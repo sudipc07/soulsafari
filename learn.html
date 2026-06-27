@@ -62,7 +62,7 @@
     font-weight: 300;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
   body::after {
@@ -155,7 +155,7 @@
 
   .course-shell {
     width: min(calc(100% - 32px), 1180px);
-    height: calc(100vh - 104px);
+    min-height: calc(100vh - 104px);
     margin: 96px auto 0;
     display: grid;
     grid-template-columns: 360px minmax(0, 1fr);
@@ -333,14 +333,15 @@
   }
 
   .lesson-stage {
-    display: grid;
-    grid-template-rows: auto minmax(0, 1fr);
+    display: block;
     border-radius: 28px;
-    overflow: hidden;
+    overflow: visible;
   }
   .player {
     position: relative;
     background: #0f1511;
+    overflow: hidden;
+    border-radius: 28px 28px 0 0;
   }
   .player::before {
     content: '';
@@ -357,7 +358,7 @@
 
   .lesson-content {
     min-height: 0;
-    overflow: auto;
+    overflow: visible;
     padding: clamp(24px, 4vw, 44px);
   }
   .lesson-back {
@@ -451,7 +452,7 @@
   }
 
   @media (max-width: 900px) {
-    html, body { height: 100%; overflow: hidden; }
+    html, body { min-height: 100%; overflow-x: hidden; overflow-y: auto; }
     .topbar {
       top: 10px;
       width: calc(100% - 20px);
@@ -468,13 +469,13 @@
     }
     .course-shell {
       width: calc(100% - 20px);
-      height: calc(100dvh - 82px);
+      min-height: calc(100dvh - 82px);
       margin-top: 82px;
       display: flex;
       grid-template-columns: none;
       gap: 12px;
       overflow-x: auto;
-      overflow-y: hidden;
+      overflow-y: visible;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
@@ -484,11 +485,15 @@
     .sidebar,
     .lesson-stage {
       flex: 0 0 100%;
-      height: 100%;
-      overflow: hidden;
+      min-height: calc(100dvh - 82px);
+      height: auto;
+      overflow: visible;
       border-radius: 22px;
       scroll-snap-align: start;
       scroll-snap-stop: always;
+    }
+    .player {
+      border-radius: 22px 22px 0 0;
     }
     .sidebar {
       grid-row: auto;
@@ -519,7 +524,7 @@
     }
     .lesson-content {
       min-height: 0;
-      overflow: auto;
+      overflow: visible;
       padding: 24px 20px 28px;
     }
     .lesson-back {
@@ -546,8 +551,7 @@
       <span>SoulSafari</span>
     </a>
     <nav class="topnav" aria-label="Primary navigation">
-      <a href="index.html#selfsafari">Self Safari</a>
-      <a href="index.html">Home</a>
+      <a href="index.html#selfsafari">Quiz</a>
       <a class="primary" href="#curriculum" data-panel="curriculum">Lessons</a>
     </nav>
   </header>
@@ -598,7 +602,7 @@
         <div class="lesson-actions">
           <button class="button complete" id="completeLesson" type="button">Mark complete</button>
           <a class="button" id="lessonYoutube" href="https://www.youtube.com/@soulsafari108" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
-          <a class="button primary" href="index.html#selfsafari">Take the Self Safari</a>
+          <a class="button primary" href="index.html#selfsafari">Take the quiz</a>
         </div>
       </article>
     </section>
