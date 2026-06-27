@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoulSafari Quiz — A Two-Minute Check-In</title>
+  <meta name="description" content="Take the SoulSafari quiz: five quiet questions to help you notice how aligned your life currently feels." />
+  <meta name="theme-color" content="#131a16" />
+  <link rel="canonical" href="https://soulsafari.in/quiz.html" />
+  <link rel="icon" type="image/png" href="assets/soulsafari-logo.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SoulSafari" />
+  <meta property="og:locale" content="en_AU" />
+  <meta property="og:url" content="https://soulsafari.in/quiz.html" />
+  <meta property="og:title" content="SoulSafari Quiz — A Two-Minute Check-In" />
+  <meta property="og:description" content="Five quiet questions. No right answers. Just a clearer signal about where you are." />
+  <meta property="og:image" content="https://soulsafari.in/assets/soulsafari-og.png" />
+  <meta property="og:image:secure_url" content="https://soulsafari.in/assets/soulsafari-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SoulSafari Quiz — A Two-Minute Check-In" />
+  <meta name="twitter:description" content="Five quiet questions to help you notice how aligned your life currently feels." />
+  <meta name="twitter:image" content="https://soulsafari.in/assets/soulsafari-og.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "SoulSafari Quiz",
+    "url": "https://soulsafari.in/quiz.html",
+    "description": "Five quiet questions to help you notice how aligned your life currently feels.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "SoulSafari",
+      "url": "https://soulsafari.in/"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #faf8f3;
+    --cream-d: #f0ead8;
+    --ink: #1a1a18;
+    --muted: #70706a;
+    --accent: #6b9f71;
+    --accent-dk: #4d7a54;
+    --accent-lt: #a8c9ac;
+    --sand: #c6b48a;
+    --sand-lt: #e2d8c4;
+    --dark: #131a16;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 12% 4%, rgba(168,201,172,0.28), transparent 34%),
+      radial-gradient(circle at 86% 10%, rgba(198,180,138,0.22), transparent 34%),
+      linear-gradient(145deg, #f8f5ed, #eef4ec 54%, #dceadd);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.78;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 20;
+  }
+  a { color: inherit; }
+  button, input { font: inherit; }
+
+  .site-header {
+    position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+    width: min(calc(100% - 32px), 1180px); height: 62px;
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+    padding: 8px 10px 8px 16px;
+    background: rgba(250,248,243,0.66);
+    border: 1px solid rgba(255,255,255,0.78);
+    border-radius: 18px;
+    box-shadow: 0 12px 42px rgba(12,20,15,0.13), inset 0 1px 0 rgba(255,255,255,0.76);
+    backdrop-filter: blur(26px) saturate(150%);
+    -webkit-backdrop-filter: blur(26px) saturate(150%);
+    overflow: hidden; z-index: 10;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(115deg, rgba(255,255,255,0.46), rgba(255,255,255,0.1), rgba(168,201,172,0.13));
+  }
+  .site-brand {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: var(--ink); text-decoration: none;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  .site-brand img { width: 34px; height: 34px; object-fit: contain; }
+  .site-links { display: flex; align-items: center; gap: 8px; }
+  .site-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 10px 14px; border-radius: 999px;
+    transition: color .2s, background .2s;
+  }
+  .site-links a:hover { color: var(--ink); background: rgba(255,255,255,0.38); }
+
+  h1, h2, h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+  .quiz-page {
+    width: min(calc(100% - 32px), 1080px);
+    margin: 96px auto 72px;
+    position: relative;
+    z-index: 1;
+  }
+  .quiz-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 290px;
+    gap: clamp(22px, 5vw, 56px);
+    align-items: end;
+    margin-bottom: 28px;
+    padding: clamp(30px, 6vw, 70px);
+    border-radius: 18px;
+    color: #f5efe4;
+    background:
+      radial-gradient(circle at 90% 12%, rgba(168,201,172,0.18), transparent 34%),
+      linear-gradient(145deg, rgba(19,26,22,.98), rgba(28,24,16,.98));
+    box-shadow: 0 24px 70px rgba(27,44,31,0.12);
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 18px;
+    color: var(--accent-lt);
+    font-size: .74rem; font-weight: 800; letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+  .eyebrow::before { content: ''; width: 20px; height: 1px; background: currentColor; }
+  .quiz-hero h1 {
+    max-width: 700px;
+    margin-bottom: 18px;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+  }
+  .quiz-hero p {
+    max-width: 620px;
+    color: rgba(245,239,228,.68);
+    font-size: 1.08rem;
+  }
+  .quiz-meta {
+    padding: 22px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.08);
+  }
+  .quiz-meta strong {
+    display: block;
+    margin-bottom: 6px;
+    font-family: 'Playfair Display', Georgia, serif;
+    color: #f5efe4;
+    font-size: 1.42rem;
+    font-weight: 500;
+  }
+  .quiz-meta span {
+    display: block;
+    color: rgba(245,239,228,.62);
+    font-size: .92rem;
+    line-height: 1.55;
+  }
+  .quiz-meta-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .quiz-meta-list span {
+    width: auto;
+    padding: 6px 10px;
+    border-radius: 999px;
+    color: #d9f0dc;
+    background: rgba(255,255,255,0.08);
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+  }
+
+  .quiz-wrap {
+    background: rgba(255,255,255,0.82);
+    border-radius: 18px;
+    border: 1px solid rgba(107,159,113,0.18);
+    box-shadow: 0 24px 70px rgba(27,44,31,0.10);
+    overflow: hidden;
+  }
+  .quiz-img-strip {
+    height: 190px;
+    background-color: var(--dark);
+    background-image: url('https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1200&q=80');
+    background-size: cover;
+    background-position: center 35%;
+    position: relative;
+  }
+  .quiz-img-strip::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(13,22,16,0.24), rgba(13,22,16,0.76));
+  }
+  .quiz-img-label {
+    position: absolute; bottom: 26px; left: clamp(24px, 5vw, 52px);
+    z-index: 1; color: white;
+  }
+  .quiz-img-label span {
+    display: block; margin-bottom: 5px;
+    color: var(--accent-lt);
+    font-size: .72rem; font-weight: 800; letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+  .quiz-img-label strong {
+    display: block;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.55rem, 3.5vw, 2rem);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .quiz-inner { padding: clamp(28px, 5vw, 56px); }
+  .qprog-track {
+    height: 4px;
+    margin-bottom: 40px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--sand-lt);
+  }
+  .qprog-bar {
+    width: 0%;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent-lt), var(--accent));
+    transition: width .5s cubic-bezier(.16,1,.3,1);
+  }
+  .quiz-step { display: none; animation: qfade .45s ease forwards; }
+  .quiz-step.active { display: block; }
+  @keyframes qfade { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+  .q-counter {
+    margin-bottom: 16px;
+    color: var(--accent-dk);
+    font-size: .76rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  .q-text {
+    max-width: 760px;
+    margin-bottom: 30px;
+    color: var(--ink);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    font-weight: 500;
+    line-height: 1.35;
+  }
+  .q-opts { display: grid; gap: 11px; }
+  .q-opt {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border: 1.5px solid var(--sand-lt);
+    border-radius: 18px;
+    padding: 16px 20px;
+    color: var(--ink);
+    background: var(--cream);
+    text-align: left;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1.45;
+    transition: border-color .2s, background .2s, transform .2s, box-shadow .2s;
+  }
+  .q-opt:hover {
+    border-color: var(--accent);
+    background: rgba(107,159,113,0.07);
+    transform: translateX(6px);
+    box-shadow: -3px 0 0 var(--accent), 0 4px 18px rgba(107,159,113,.11);
+  }
+
+  .quiz-result { display: none; animation: qfade .5s ease forwards; }
+  .quiz-result.active { display: block; }
+  .qr-bar-wrap { margin-bottom: 30px; }
+  .qr-label {
+    margin-bottom: 9px;
+    color: var(--accent-dk);
+    font-size: .76rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  .qr-track {
+    height: 10px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--cream-d);
+  }
+  .qr-fill {
+    width: 0%;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent-lt), var(--accent), var(--accent-dk));
+    transition: width 1s cubic-bezier(.16,1,.3,1);
+  }
+  .qr-title {
+    margin-bottom: 16px;
+    color: var(--ink);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.12;
+  }
+  .qr-text {
+    max-width: 760px;
+    margin-bottom: 28px;
+    color: var(--muted);
+    font-size: 1.04rem;
+  }
+  .qr-next,
+  .guide-form {
+    max-width: 760px;
+    margin-top: 20px;
+    padding: 22px;
+    border-radius: 18px;
+    border: 1px solid rgba(107,159,113,0.16);
+    background: rgba(255,255,255,0.64);
+  }
+  .qr-next-label,
+  .guide-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--accent-dk);
+    font-size: .74rem;
+    font-weight: 850;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .qr-next h3 {
+    margin-bottom: 8px;
+    color: var(--ink);
+    font-size: 1.6rem;
+  }
+  .qr-next p,
+  .guide-form-copy,
+  .guide-privacy {
+    max-width: 100%;
+    color: var(--muted);
+    font-size: .96rem;
+    line-height: 1.62;
+  }
+  .guide-form {
+    color: white;
+    background: linear-gradient(145deg, rgba(19,26,22,.98), rgba(28,24,16,.98));
+    border-color: rgba(255,255,255,0.08);
+  }
+  .guide-form label { color: var(--accent-lt); }
+  .guide-form-copy,
+  .guide-privacy { color: rgba(245,239,228,.62); }
+  .guide-form-row {
+    display: flex;
+    align-items: stretch;
+    gap: 9px;
+    margin-top: 16px;
+  }
+  .guide-email {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 999px;
+    padding: 12px 16px;
+    color: white;
+    background: rgba(255,255,255,0.08);
+    outline: none;
+  }
+  .guide-email::placeholder { color: rgba(255,255,255,0.4); }
+  .guide-email:focus {
+    border-color: rgba(168,201,172,0.64);
+    box-shadow: 0 0 0 4px rgba(168,201,172,0.12);
+  }
+  .guide-submit,
+  .qr-continue {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    border: 0;
+    border-radius: 999px;
+    padding: 12px 20px;
+    color: white;
+    background: var(--accent);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: .86rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    transition: transform .2s, background .2s, box-shadow .2s;
+  }
+  .guide-submit:hover,
+  .qr-continue:hover {
+    background: var(--accent-dk);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(77,122,84,.24);
+  }
+  .guide-submit:disabled { cursor: wait; opacity: 0.6; transform: none; }
+  .guide-status { min-height: 1.4em; margin: 9px 0 0; color: var(--accent-lt); font-size: .86rem; }
+  .guide-status.error { color: #efc7b8; }
+  .guide-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .qr-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .qr-continue.secondary {
+    color: var(--accent-dk);
+    background: white;
+    border: 1px solid rgba(107,159,113,0.22);
+  }
+  .qr-continue.secondary:hover {
+    color: white;
+    background: var(--dark);
+  }
+
+  @media (max-width: 860px) {
+    .site-header { top: 10px; width: calc(100% - 20px); height: 58px; padding: 8px 9px 8px 12px; }
+    .site-brand span { display: none; }
+    .site-links { gap: 6px; }
+    .site-links a { padding: 9px 10px; font-size: .72rem; letter-spacing: .06em; }
+    .quiz-page { width: calc(100% - 20px); margin-top: 82px; }
+    .quiz-hero {
+      grid-template-columns: 1fr;
+      padding: 28px 22px;
+      border-radius: 18px;
+    }
+    .quiz-hero h1 { font-size: clamp(2.8rem, 16vw, 4.6rem); }
+    .quiz-wrap { border-radius: 18px; }
+    .quiz-img-strip { height: 170px; }
+    .quiz-inner { padding: 28px 20px 36px; }
+    .guide-form-row { flex-direction: column; }
+    .guide-submit, .qr-continue { width: 100%; }
+    .qr-actions { flex-direction: column; }
+  }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="index.html" aria-label="SoulSafari home">
+      <img src="assets/soulsafari-logo.png" alt="" aria-hidden="true" />
+      <span>SoulSafari</span>
+    </a>
+    <nav class="site-links" aria-label="Primary navigation">
+      <a href="learn.html">Learn</a>
+      <a href="blog.html">Blog</a>
+      <a href="quiz.html">Quiz</a>
+    </nav>
+  </header>
+
+  <main class="quiz-page">
+    <section class="quiz-hero">
+      <div>
+        <span class="eyebrow">Start here</span>
+        <h1>The Quiz</h1>
+        <p>Five quiet questions. No right answers. Just a clearer signal about where you are, and what may be asking for attention.</p>
+      </div>
+      <aside class="quiz-meta" aria-label="Quiz details">
+        <strong>Two quiet minutes.</strong>
+        <span>A private check-in with how aligned your life currently feels.</span>
+        <div class="quiz-meta-list" aria-hidden="true">
+          <span>5 questions</span>
+          <span>No sign-up</span>
+          <span>Instant reflection</span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="quiz-wrap" aria-label="SoulSafari quiz">
+      <div class="quiz-img-strip">
+        <div class="quiz-img-label">
+          <span>Begin here</span>
+          <strong>Check in with yourself</strong>
+        </div>
+      </div>
+
+      <div class="quiz-inner">
+        <div class="qprog-track">
+          <div class="qprog-bar" id="qProgBar"></div>
+        </div>
+
+        <div class="quiz-step active" id="qs0">
+          <p class="q-counter">Question 1 of 5</p>
+          <p class="q-text">When you wake up most mornings, what is your dominant feeling about the day ahead?</p>
+          <div class="q-opts">
+            <button class="q-opt" onclick="QUIZ.answer(4)">Genuine curiosity and energy</button>
+            <button class="q-opt" onclick="QUIZ.answer(3)">Generally positive, though it varies</button>
+            <button class="q-opt" onclick="QUIZ.answer(2)">A low-level reluctance</button>
+            <button class="q-opt" onclick="QUIZ.answer(1)">A heaviness I try to push through</button>
+          </div>
+        </div>
+
+        <div class="quiz-step" id="qs1">
+          <p class="q-counter">Question 2 of 5</p>
+          <p class="q-text">How often does your work feel meaningful — beyond simply earning a living?</p>
+          <div class="q-opts">
+            <button class="q-opt" onclick="QUIZ.answer(4)">Almost always</button>
+            <button class="q-opt" onclick="QUIZ.answer(3)">Often, though not every day</button>
+            <button class="q-opt" onclick="QUIZ.answer(2)">Occasionally, in fleeting moments</button>
+            <button class="q-opt" onclick="QUIZ.answer(1)">Rarely or never</button>
+          </div>
+        </div>
+
+        <div class="quiz-step" id="qs2">
+          <p class="q-counter">Question 3 of 5</p>
+          <p class="q-text">When you imagine your life five years from now, what feeling arises?</p>
+          <div class="q-opts">
+            <button class="q-opt" onclick="QUIZ.answer(4)">Genuine excitement and possibility</button>
+            <button class="q-opt" onclick="QUIZ.answer(3)">Cautious hope, mixed with uncertainty</button>
+            <button class="q-opt" onclick="QUIZ.answer(2)">Quiet unease or restlessness</button>
+            <button class="q-opt" onclick="QUIZ.answer(1)">I prefer not to think too far ahead</button>
+          </div>
+        </div>
+
+        <div class="quiz-step" id="qs3">
+          <p class="q-counter">Question 4 of 5</p>
+          <p class="q-text">After spending time with the people closest to you, how do you usually feel?</p>
+          <div class="q-opts">
+            <button class="q-opt" onclick="QUIZ.answer(4)">Energised, seen, and deeply connected</button>
+            <button class="q-opt" onclick="QUIZ.answer(3)">Comfortable, though not always deeply met</button>
+            <button class="q-opt" onclick="QUIZ.answer(2)">Somewhat hollow or misunderstood</button>
+            <button class="q-opt" onclick="QUIZ.answer(1)">Often drained or performing a version of myself</button>
+          </div>
+        </div>
+
+        <div class="quiz-step" id="qs4">
+          <p class="q-counter">Question 5 of 5</p>
+          <p class="q-text">When you sit quietly without distraction — no phone, no task — what do you notice?</p>
+          <div class="q-opts">
+            <button class="q-opt" onclick="QUIZ.answer(4)">A sense of quiet peace or clarity</button>
+            <button class="q-opt" onclick="QUIZ.answer(3)">Some restlessness, but I can settle</button>
+            <button class="q-opt" onclick="QUIZ.answer(2)">Persistent thoughts I can't slow down</button>
+            <button class="q-opt" onclick="QUIZ.answer(1)">Deep discomfort — I rarely allow it</button>
+          </div>
+        </div>
+
+        <div class="quiz-result" id="quizResult" role="status" aria-live="polite" tabindex="-1">
+          <div class="qr-bar-wrap">
+            <p class="qr-label" id="qrLabel">Your alignment signal</p>
+            <div class="qr-track"><div class="qr-fill" id="qrFill"></div></div>
+          </div>
+          <p class="qr-title" id="qrTitle"></p>
+          <p class="qr-text" id="qrText"></p>
+
+          <div class="qr-next">
+            <span class="qr-next-label">What happens next</span>
+            <h3>Follow the signal gently.</h3>
+            <p>Your result is a starting point, not a verdict. Let it point you toward one honest next step.</p>
+          </div>
+
+          <form class="guide-form" id="guideForm" onsubmit="GUIDE.send(event)" novalidate>
+            <label for="guideEmail">Send the full guide to your inbox</label>
+            <p class="guide-form-copy">Seven thoughtful pages to help you sit with your result and decide what comes next.</p>
+            <div class="guide-form-row">
+              <input class="guide-email" id="guideEmail" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="guidePrivacy guideStatus" />
+              <button class="guide-submit" type="submit">Send my guide</button>
+            </div>
+            <div class="guide-honeypot" aria-hidden="true">
+              <label for="guideWebsite">Leave this field empty</label>
+              <input id="guideWebsite" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+            <p class="guide-privacy" id="guidePrivacy">One useful email. No list, no noise.</p>
+            <p class="guide-status" id="guideStatus" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="qr-actions">
+            <a class="qr-continue" href="learn.html">Continue with Learn Safari</a>
+            <a class="qr-continue secondary" href="blog.html">Read the essays</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+  const QUIZ = {
+    current: 0,
+    answers: [],
+    results: [
+      {
+        min: 5, max: 10,
+        title: "Something inside is asking for attention.",
+        text: "The discomfort you may feel is not a sign of failure. It is your inner compass trying to speak. What you have noticed here is already the beginning of change.",
+        pct: 30
+      },
+      {
+        min: 11, max: 15,
+        title: "You are navigating a mixed landscape.",
+        text: "Some areas of your life feel alive and meaningful. Others quietly ask for attention. This is a common threshold — the place where honest reflection can create real momentum.",
+        pct: 62
+      },
+      {
+        min: 16, max: 20,
+        title: "You carry genuine signs of alignment.",
+        text: "The clarity and energy you feel in key areas of life are worth protecting and deepening. Even in aligned lives, new questions emerge. The practice of noticing continues.",
+        pct: 88
+      }
+    ],
+    answer(value) {
+      this.answers.push(value);
+      const next = this.current + 1;
+      document.getElementById('qs' + this.current).classList.remove('active');
+      document.getElementById('qProgBar').style.width = ((next / 5) * 100) + '%';
+      if (next < 5) {
+        this.current = next;
+        document.getElementById('qs' + next).classList.add('active');
+      } else {
+        this.showResult();
+      }
+    },
+    showResult() {
+      const score = this.answers.reduce((sum, value) => sum + value, 0);
+      const resultData = this.results.find((item) => score >= item.min && score <= item.max) || this.results[1];
+      const result = document.getElementById('quizResult');
+      document.getElementById('qrTitle').textContent = resultData.title;
+      document.getElementById('qrText').textContent = resultData.text;
+      result.classList.add('active');
+      document.getElementById('qProgBar').style.width = '100%';
+      result.focus({ preventScroll: true });
+      setTimeout(() => {
+        document.getElementById('qrFill').style.width = resultData.pct + '%';
+      }, 100);
+    }
+  };
+
+  const GUIDE = {
+    async send(event) {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const email = form.elements.email;
+      const button = form.querySelector('.guide-submit');
+      const status = document.getElementById('guideStatus');
+      const originalLabel = button.textContent;
+
+      status.classList.remove('error');
+      status.textContent = '';
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (window.location.protocol === 'file:') {
+        status.classList.add('error');
+        status.textContent = 'Email delivery is available on the live site.';
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = 'Sending…';
+
+      try {
+        const response = await fetch('/api/send-guide', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: email.value,
+            website: form.elements.website.value
+          })
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.message || 'The guide could not be sent.');
+
+        form.reset();
+        button.textContent = 'Sent';
+        status.textContent = 'It’s on its way. Check your inbox.';
+      } catch (error) {
+        status.classList.add('error');
+        status.textContent = error.message || 'Something went wrong. Please try again.';
+        button.disabled = false;
+        button.textContent = originalLabel;
+      }
+    }
+  };
+  </script>
+</body>
+</html>

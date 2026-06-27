@@ -78,7 +78,7 @@
   a { color: inherit; }
   button { font: inherit; }
 
-  .topbar {
+  .site-header {
     position: fixed;
     top: 16px; left: 50%;
     transform: translateX(-50%);
@@ -98,12 +98,12 @@
     overflow: hidden;
     z-index: 10;
   }
-  .topbar::before {
+  .site-header::before {
     content: '';
     position: absolute; inset: 0; z-index: -1;
     background: linear-gradient(115deg, rgba(255,255,255,0.46), rgba(255,255,255,0.1), rgba(168,201,172,0.13));
   }
-  .brand {
+  .site-brand {
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -115,36 +115,25 @@
     letter-spacing: -0.02em;
     white-space: nowrap;
   }
-  .brand img { width: 34px; height: 34px; object-fit: contain; }
-  .topnav {
+  .site-brand img { width: 34px; height: 34px; object-fit: contain; }
+  .site-links {
     display: flex;
     align-items: center;
     gap: 8px;
   }
-  .topnav button {
-    display: none;
-    border: 0;
-    cursor: pointer;
-  }
-  .topnav a {
+  .site-links a {
     color: var(--muted);
     text-decoration: none;
     font-size: 0.72rem;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 10px 14px;
     border-radius: 999px;
     transition: color .2s, background .2s, transform .2s;
   }
-  .topnav a:hover { color: var(--ink); background: rgba(255,255,255,0.42); }
-  .topnav .primary {
-    color: white;
-    background: var(--accent-dk);
-    padding: 11px 17px;
-    box-shadow: 0 6px 18px rgba(77,122,84,0.24);
-  }
-  .topnav .primary:hover { color: white; background: var(--dark); transform: translateY(-1px); }
+  .site-links a:hover { color: var(--ink); background: rgba(255,255,255,0.38); }
+  .mobile-label { display: none; }
 
   h1, h2, h3 {
     font-family: 'Playfair Display', Georgia, serif;
@@ -177,7 +166,7 @@
   .sidebar {
     display: flex;
     flex-direction: column;
-    border-radius: 28px;
+    border-radius: 18px;
     overflow: hidden;
   }
   .course-intro {
@@ -201,7 +190,13 @@
   }
   .course-intro p {
     color: rgba(245,239,228,0.66);
-    font-size: .92rem;
+    font-size: .98rem;
+  }
+  .journey-note {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.11);
+    color: rgba(245,239,228,0.82) !important;
   }
   .course-meta {
     display: flex;
@@ -223,34 +218,32 @@
     flex: 1;
     min-height: 0;
     overflow: auto;
-    padding: 14px;
+    padding: 10px 18px 20px;
   }
   .module {
-    border: 1px solid rgba(107,159,113,0.15);
-    border-radius: 18px;
-    background: rgba(250,248,243,0.68);
-    overflow: hidden;
+    padding: 18px 0 16px;
+    border-bottom: 1px solid rgba(107,159,113,0.16);
   }
-  .module + .module { margin-top: 12px; }
+  .module:last-child { border-bottom: 0; }
   .module-toggle {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 12px;
-    align-items: center;
-    padding: 15px 15px 14px;
+    grid-template-columns: minmax(0,1fr) auto;
+    gap: 10px;
+    align-items: start;
+    padding: 0 0 10px;
     border: 0;
     background: transparent;
     color: var(--ink);
     text-align: left;
     cursor: pointer;
   }
-  .module-toggle:hover { background: rgba(255,255,255,0.52); }
+  .module-toggle:hover .module-title { color: var(--accent-dk); }
   .module-label {
     display: block;
     margin-bottom: 5px;
     color: var(--accent-dk);
-    font-size: .65rem;
+    font-size: .72rem;
     font-weight: 800;
     letter-spacing: .15em;
     text-transform: uppercase;
@@ -259,40 +252,76 @@
     display: block;
     font-weight: 700;
     line-height: 1.3;
+    font-size: 1.06rem;
+  }
+  .module-description {
+    display: block;
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.45;
   }
   .module-count {
     color: var(--muted);
-    font-size: .75rem;
+    font-size: .74rem;
     font-weight: 700;
     text-align: right;
+    white-space: nowrap;
   }
   .module-lessons {
     display: grid;
-    gap: 6px;
-    padding: 0 10px 12px;
+    gap: 4px;
+    padding: 0;
   }
-  .module.closed .module-lessons { display: none; }
-
   .lesson-row {
+    position: relative;
     width: 100%;
     display: grid;
-    grid-template-columns: 34px minmax(0,1fr);
+    grid-template-columns: 24px minmax(0,1fr);
     gap: 10px;
     align-items: start;
-    padding: 10px;
+    padding: 10px 8px 10px 12px;
     border: 1px solid transparent;
-    border-radius: 14px;
+    border-radius: 18px;
     background: transparent;
     color: var(--ink);
     text-align: left;
     cursor: pointer;
     transition: background .2s, border-color .2s, transform .2s;
   }
-  .lesson-row:hover,
+  .lesson-row::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 0;
+    width: 4px;
+    border-radius: 999px;
+    background: transparent;
+  }
+  .lesson-row:hover {
+    background: rgba(255,255,255,0.62);
+    border-color: rgba(107,159,113,0.16);
+    transform: none;
+  }
   .lesson-row.active {
-    background: white;
-    border-color: rgba(107,159,113,0.22);
-    transform: translateX(2px);
+    background: linear-gradient(135deg, rgba(168,201,172,0.28), rgba(255,255,255,0.78));
+    border-color: rgba(77,122,84,0.34);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.76), 0 10px 24px rgba(27,44,31,0.08);
+  }
+  .lesson-row.active::before {
+    background: var(--accent-dk);
+  }
+  .lesson-row.active .lesson-dot {
+    background: var(--accent-dk);
+    box-shadow: 0 0 0 4px rgba(107,159,113,0.14);
+  }
+  .lesson-row.active small {
+    color: var(--accent-dk);
+  }
+  .lesson-row.active strong {
+    color: var(--ink);
+    font-weight: 800;
   }
   .lesson-row.done .lesson-dot {
     background: var(--dark);
@@ -304,16 +333,16 @@
     font-size: 0;
   }
   .lesson-row.done .lesson-dot::before {
-    font-size: .78rem;
+    font-size: .9rem;
   }
   .lesson-dot {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 30px; height: 30px;
+    width: 24px; height: 24px;
     border-radius: 50%;
     color: white;
-    background: var(--accent-dk);
+    background: var(--accent);
     font-size: .72rem;
     font-weight: 800;
   }
@@ -321,27 +350,27 @@
     display: block;
     margin-bottom: 3px;
     color: var(--accent-dk);
-    font-size: .64rem;
+    font-size: .72rem;
     font-weight: 800;
     letter-spacing: .12em;
     text-transform: uppercase;
   }
   .lesson-row strong {
     display: block;
-    font-size: .88rem;
+    font-size: .98rem;
     line-height: 1.32;
   }
 
   .lesson-stage {
     display: block;
-    border-radius: 28px;
+    border-radius: 18px;
     overflow: visible;
   }
   .player {
     position: relative;
     background: #0f1511;
     overflow: hidden;
-    border-radius: 28px 28px 0 0;
+    border-radius: 18px 18px 0 0;
   }
   .player::before {
     content: '';
@@ -368,7 +397,7 @@
     background: transparent;
     color: var(--accent-dk);
     cursor: pointer;
-    font-size: .78rem;
+    font-size: .8rem;
     font-weight: 800;
     letter-spacing: .12em;
     text-transform: uppercase;
@@ -399,13 +428,13 @@
   .lesson-content h2 {
     max-width: 760px;
     margin-bottom: 16px;
-    font-size: clamp(2.1rem, 4.5vw, 4.35rem);
+    font-size: clamp(2.2rem, 3.4vw, 3.25rem);
   }
   .lesson-summary {
     max-width: 760px;
     margin-bottom: 22px;
     color: var(--muted);
-    font-size: 1.03rem;
+    font-size: 1.06rem;
   }
   .field-note {
     max-width: 760px;
@@ -414,7 +443,102 @@
     border-radius: 0 18px 18px 0;
     background: rgba(240,234,216,0.62);
     color: #55554f;
+    font-size: 1.04rem;
+    line-height: 1.65;
   }
+  .essay-deepening {
+    max-width: 760px;
+    margin-top: 18px;
+    padding: clamp(20px, 3vw, 28px);
+    border: 1px solid rgba(107,159,113,0.18);
+    border-radius: 18px;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.82), rgba(250,248,243,0.62)),
+      radial-gradient(circle at 92% 8%, rgba(168,201,172,0.2), transparent 34%);
+    box-shadow: 0 16px 42px rgba(27,44,31,0.08);
+  }
+  .reinforce-eyebrow {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--accent-dk);
+    font-size: .74rem;
+    font-weight: 850;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  .essay-deepening h3 {
+    margin-bottom: 12px;
+    color: var(--ink);
+    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+  }
+  .reinforce-lead {
+    max-width: 660px;
+    margin-bottom: 18px;
+    color: var(--muted);
+    font-size: 1.06rem;
+    line-height: 1.65;
+  }
+  .reinforce-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .reinforce-card {
+    padding: 16px;
+    border: 1px solid rgba(107,159,113,0.14);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.62);
+  }
+  .reinforce-card.wide {
+    grid-column: 1 / -1;
+    background: rgba(240,234,216,0.52);
+  }
+  .reinforce-card span {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--accent-dk);
+    font-size: .72rem;
+    font-weight: 850;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .reinforce-card p,
+  .reinforce-card li {
+    color: #56564f;
+    font-size: 1rem;
+    line-height: 1.58;
+  }
+  .reinforce-card ul {
+    display: grid;
+    gap: 8px;
+    list-style: none;
+  }
+  .reinforce-card li {
+    position: relative;
+    padding-left: 18px;
+  }
+  .reinforce-card li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: .68em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .essay-deepening a {
+    display: inline-flex;
+    margin-top: 18px;
+    color: var(--accent-dk);
+    font-size: .88rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .essay-deepening a:hover { color: var(--dark); }
   .lesson-actions {
     display: flex;
     gap: 12px;
@@ -432,7 +556,7 @@
     color: var(--accent-dk);
     background: rgba(255,255,255,0.62);
     text-decoration: none;
-    font-size: .82rem;
+    font-size: .88rem;
     font-weight: 700;
     letter-spacing: .06em;
     transition: transform .2s, background .2s, color .2s, box-shadow .2s;
@@ -453,19 +577,40 @@
 
   @media (max-width: 900px) {
     html, body { min-height: 100%; overflow-x: hidden; overflow-y: auto; }
-    .topbar {
+    .site-header {
       top: 10px;
       width: calc(100% - 20px);
       height: 58px;
       padding: 8px 9px 8px 12px;
     }
-    .brand span { display: none; }
-    .topnav { gap: 6px; }
-    .topnav a:not(.primary) { display: none; }
-    .topnav .primary {
-      display: inline-flex;
-      padding: 10px 12px;
-      font-size: .7rem;
+    .site-brand span { display: none; }
+    .site-links { gap: 6px; }
+    .site-links a {
+      padding: 9px 10px;
+      font-size: .72rem;
+      letter-spacing: .06em;
+    }
+    .desktop-label { display: none; }
+    .mobile-label { display: inline; }
+    .module-toggle {
+      grid-template-columns: minmax(0,1fr) auto;
+      gap: 10px;
+    }
+    .module-count {
+      text-align: left;
+      font-size: .74rem;
+    }
+    .module-description {
+      max-width: none;
+    }
+    .module-lessons {
+      padding-left: 0;
+    }
+    .reinforce-grid {
+      grid-template-columns: 1fr;
+    }
+    .reinforce-card.wide {
+      grid-column: auto;
     }
     .course-shell {
       width: calc(100% - 20px);
@@ -488,12 +633,12 @@
       min-height: calc(100dvh - 82px);
       height: auto;
       overflow: visible;
-      border-radius: 22px;
+      border-radius: 18px;
       scroll-snap-align: start;
       scroll-snap-stop: always;
     }
     .player {
-      border-radius: 22px 22px 0 0;
+      border-radius: 18px 18px 0 0;
     }
     .sidebar {
       grid-row: auto;
@@ -506,7 +651,7 @@
       margin-bottom: 8px;
     }
     .course-intro p {
-      font-size: .84rem;
+      font-size: .96rem;
       line-height: 1.55;
     }
     .course-meta {
@@ -533,7 +678,7 @@
       align-self: flex-start;
     }
     .lesson-content h2 {
-      font-size: clamp(2rem, 11vw, 3.2rem);
+      font-size: clamp(2rem, 8vw, 2.55rem);
     }
     .player::before {
       aspect-ratio: 16 / 10;
@@ -545,14 +690,15 @@
 </head>
 
 <body>
-  <header class="topbar">
-    <a class="brand" href="index.html" aria-label="SoulSafari home">
+  <header class="site-header">
+    <a class="site-brand" href="index.html" aria-label="SoulSafari home">
       <img src="assets/soulsafari-logo.png" alt="" aria-hidden="true" />
       <span>SoulSafari</span>
     </a>
-    <nav class="topnav" aria-label="Primary navigation">
-      <a href="index.html#selfsafari">Quiz</a>
-      <a class="primary" href="#curriculum" data-panel="curriculum">Lessons</a>
+    <nav class="site-links" aria-label="Primary navigation">
+      <a href="learn.html">Learn</a>
+      <a href="blog.html">Blog</a>
+      <a href="quiz.html">Quiz</a>
     </nav>
   </header>
 
@@ -562,6 +708,7 @@
         <span class="course-kicker">Learn Safari</span>
         <h1>A journey through the interior.</h1>
         <p>Choose a terrain. Watch one lesson. Let the question stay with you for a while.</p>
+        <p class="journey-note">A path through eight ideas. Take them in order, or wander.</p>
         <div class="course-meta">
           <span id="lessonCount">8 lessons</span>
           <span>self-paced</span>
@@ -599,15 +746,35 @@
         <h2 id="lessonTitle">Loading Learn Safari…</h2>
         <p class="lesson-summary" id="lessonSummary">The current lesson will appear here.</p>
         <p class="field-note" id="lessonExplainer">Choose a lesson from the curriculum.</p>
+        <section class="essay-deepening" id="essayDeepening">
+          <span class="reinforce-eyebrow">Read beneath the lesson</span>
+          <h3 id="reinforceTitle">Carry it with you</h3>
+          <p class="reinforce-lead" id="reinforceLead">A simple way to carry the lesson into the rest of your day.</p>
+          <div class="reinforce-grid">
+            <div class="reinforce-card">
+              <span>The idea</span>
+              <p id="reinforceIdea">The core idea will appear here.</p>
+            </div>
+            <div class="reinforce-card">
+              <span>Notice</span>
+              <ul id="reinforceBullets"></ul>
+            </div>
+            <div class="reinforce-card wide">
+              <span>Try this</span>
+              <p id="reinforcePractice">One tiny practice will appear here.</p>
+            </div>
+          </div>
+          <a id="lessonEssayLink" href="blog.html">Read the full essay →</a>
+        </section>
         <div class="lesson-actions">
           <button class="button complete" id="completeLesson" type="button">Mark complete</button>
-          <a class="button" id="lessonYoutube" href="https://www.youtube.com/@soulsafari108" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
-          <a class="button primary" href="index.html#selfsafari">Take the quiz</a>
+          <button class="button primary" id="nextLesson" type="button">Next lesson →</button>
         </div>
       </article>
     </section>
   </main>
 
+  <script src="assets/essays-data.js"></script>
   <script>
   const JOURNEY_SECTIONS = [
     {
@@ -618,18 +785,18 @@
       lessonIds: ['bHFYKmSyNxQ', 'l9j92Q2CZgo']
     },
     {
-      id: 'worth',
-      title: 'Worth, wanting, and the grip',
-      label: 'Inner weather',
-      description: 'Enoughness, desire, and the hand that closes too tightly.',
-      lessonIds: ['3ZrFoy1eZ_A', '0mcHoYw22Ow']
-    },
-    {
       id: 'carried',
       title: 'What you carry',
       label: 'Memory and action',
       description: 'Old wounds, repeated patterns, and what your actions keep creating.',
       lessonIds: ['bnDOtMcO9UU', 'MQ5T3UUqivc']
+    },
+    {
+      id: 'worth',
+      title: 'Wanting, and what is enough',
+      label: 'Enoughness',
+      description: 'Worth, desire, and learning to hold life with a little more room.',
+      lessonIds: ['3ZrFoy1eZ_A', '0mcHoYw22Ow']
     },
     {
       id: 'way',
@@ -641,68 +808,156 @@
     {
       id: 'wonder',
       title: 'Wonder and return',
-      label: 'Re-enchantment',
-      description: 'Seeing the ordinary until it begins to shimmer again.',
+      label: 'Seeing freshly',
+      description: 'Seeing ordinary life with the attention it deserves.',
       lessonIds: ['7prlL2SoG_A']
     }
   ];
 
   const LESSON_META = {
     bHFYKmSyNxQ: {
+      essaySlug: 'chanchala',
       word: 'Chanchala',
       theme: 'The restless mind',
       title: "The 3am Mind",
       summary: "Start here if your mind keeps running after the day is done. The goal is not to beat the mind into silence, but to stop obeying every lap it runs.",
-      explainer: "Field note: when the loop begins, name it gently — “thinking is happening.” Then notice the room, the breath, and the body that is already here."
+      explainer: "Field note: when the loop begins, name it gently — “thinking is happening.” Then notice the room, the breath, and the body that is already here.",
+      reinforcement: {
+        lead: "The mind does not need to be beaten into silence. Relief begins when you stop climbing inside every thought it produces.",
+        idea: "You are not the loop. You are the one who can notice the loop.",
+        bullets: [
+          "The same worry often repeats like one thought doing many laps.",
+          "Trying to force the mind quiet usually creates more noise.",
+          "The useful move is not control. It is stepping back into noticing."
+        ],
+        practice: "When the mind starts circling, say: “thinking is happening.” Then name three simple things in the room. Let the body remind you that this moment is already here."
+      }
     },
     l9j92Q2CZgo: {
+      essaySlug: 'abhaya',
       word: 'Abhaya',
       theme: 'Fearlessness',
       title: "Why You Can't Stop Worrying About the Future",
       summary: "Worry looks like preparation, but often it is imagination rehearsing pain. This lesson asks what it means to meet the real moment when it arrives.",
-      explainer: "Field note: separate preparation from rehearsal. If there is one real action to take, take it. If not, admit: “this is a future movie.”"
+      explainer: "Field note: separate preparation from rehearsal. If there is one real action to take, take it. If not, admit: “this is a future movie.”",
+      reinforcement: {
+        lead: "Worry feels responsible because it keeps looking ahead. But sometimes it is only fear asking for another rehearsal.",
+        idea: "Preparation helps you act. Rehearsal keeps you trapped in a future that is not here.",
+        bullets: [
+          "Ask whether there is one real action available now.",
+          "If there is, take the smallest useful step.",
+          "If there is not, name the worry as a future movie, not a present fact."
+        ],
+        practice: "Write two columns: “I can do” and “I am imagining.” Put one item in each. Do the first. Let the second wait outside the room."
+      }
     },
     '3ZrFoy1eZ_A': {
+      essaySlug: 'purna',
       word: 'Purna',
       theme: 'Wholeness',
       title: "Why You Never Feel Good Enough",
       summary: "The not-enough voice keeps moving the finish line. This lesson points toward a fullness that achievement can express, but never manufacture.",
-      explainer: "Field note: when comparison appears, ask whose ruler you are holding. Then set the ruler down for one breath before choosing your next move."
+      explainer: "Field note: when comparison appears, ask whose ruler you are holding. Then set the ruler down for one breath before choosing your next move.",
+      reinforcement: {
+        lead: "The not-enough voice survives by moving the finish line. This lesson asks you to notice the ruler before you obey it.",
+        idea: "Wholeness is not a prize at the end of achievement. It is the ground from which better action can begin.",
+        bullets: [
+          "Comparison often uses someone else’s measure of a good life.",
+          "More achievement may express fullness, but it cannot manufacture it.",
+          "Feeling incomplete is not always truth. Sometimes it is a habit of measurement."
+        ],
+        practice: "When you feel behind, ask: “Whose ruler am I holding?” Then choose one next action from care, not from proving."
+      }
     },
     '0mcHoYw22Ow': {
+      essaySlug: 'vairagya',
       word: 'Vairagya',
       theme: 'The grip that loses everything',
       title: "You Were Never Asked to Stop Wanting",
       summary: "Desire is not the enemy. Suffering often begins when the hand closes so tightly that life has no room to move.",
-      explainer: "Field note: name the want without apology. Then loosen the demand that it must happen in one exact shape to prove your life is okay."
+      explainer: "Field note: name the want without apology. Then loosen the demand that it must happen in one exact shape to prove your life is okay.",
+      reinforcement: {
+        lead: "The lesson is not to become cold or indifferent. It is to keep the desire and loosen the clench around it.",
+        idea: "Wanting is alive. Gripping is fear trying to control the shape of life.",
+        bullets: [
+          "You can care deeply without making one outcome prove your worth.",
+          "A closed fist cannot receive what is trying to arrive.",
+          "The open hand is not empty. It is available."
+        ],
+        practice: "Name one thing you want. Then add: “and my life is allowed to breathe while I wait.” Feel the difference between desire and demand."
+      }
     },
     bnDOtMcO9UU: {
+      essaySlug: 'kshama',
       word: 'Kshama',
       theme: 'Forgiveness as strength',
       title: "The Poison You Keep Drinking",
       summary: "Forgiveness is not pretending the wound was fine. It is the strength to stop staging the injury inside your own body every day.",
-      explainer: "Field note: keep every boundary you need. Then ask what part of the old event you are still replaying on their behalf."
+      explainer: "Field note: keep every boundary you need. Then ask what part of the old event you are still replaying on their behalf.",
+      reinforcement: {
+        lead: "Forgiveness here is not approval, softness, or forgetting. It is the decision to stop letting the old wound keep using your body as a stage.",
+        idea: "You can keep the boundary and still put down the poison.",
+        bullets: [
+          "Forgiveness does not say what happened was okay.",
+          "The other person does not need access to you for you to be free.",
+          "The real question is what replay you are still carrying."
+        ],
+        practice: "Complete this sentence: “I can protect myself without replaying…” Name the replay. Then let one breath be free of it."
+      }
     },
     MQ5T3UUqivc: {
+      essaySlug: 'karma',
       word: 'Karma',
       theme: 'Action without the judge',
       title: "The Ledger That Has No Judge",
       summary: "Karma is often reduced to cosmic bookkeeping. This lesson brings it back to action, consequence, and the patterns we keep feeding.",
-      explainer: "Field note: choose one repeated action and ask, “what kind of person does this practice create if I keep doing it?”"
+      explainer: "Field note: choose one repeated action and ask, “what kind of person does this practice create if I keep doing it?”",
+      reinforcement: {
+        lead: "Karma becomes useful when it stops being a verdict. It is not a judge watching you. It is the pattern your actions keep growing.",
+        idea: "The present is where the pen touches the page.",
+        bullets: [
+          "The past may explain a pattern, but it does not have to keep authoring it.",
+          "Every repeated action trains a future tendency.",
+          "You are not waiting for a verdict. You are practicing a direction."
+        ],
+        practice: "Pick one small repeated action from today. Ask: “If I keep doing this, what kind of person does it make easier to become?”"
+      }
     },
     VzV3FXjM2Jo: {
+      essaySlug: 'svadharma',
       word: 'Svadharma',
       theme: 'Your own path',
       title: "The Borrowed Map",
       summary: "Feeling lost is not always the absence of purpose. Sometimes it is the friction of walking a path that was never yours.",
-      explainer: "Field note: notice envy, admiration, and resistance. Each one may be pointing toward a borrowed map — or toward something native to you."
+      explainer: "Field note: notice envy, admiration, and resistance. Each one may be pointing toward a borrowed map — or toward something native to you.",
+      reinforcement: {
+        lead: "This lesson is about the quiet strain of living from someone else’s map. Direction often begins by noticing what does not feel native anymore.",
+        idea: "Being lost can be a signal, not a failure.",
+        bullets: [
+          "A borrowed path can look successful and still feel wrong inside.",
+          "Envy, admiration, and resistance are clues worth listening to.",
+          "Your way may be quieter than the roles people expect from you."
+        ],
+        practice: "Ask: “Where am I performing a life that looks right but feels borrowed?” Write one honest sentence without fixing it yet."
+      }
     },
     '7prlL2SoG_A': {
+      essaySlug: 'chamatkar',
       word: 'Chamatkar',
       theme: 'Wonder',
       title: "The Making of a Wow",
       summary: "Wonder is not only in the object. It is in the meeting between attention and the world. This lesson reopens the ordinary.",
-      explainer: "Field note: once today, let something be seen without naming its use. Stay until the ordinary gives back a little shimmer."
+      explainer: "Field note: once today, let something be seen without naming its use. Stay until the ordinary gives back a little shimmer.",
+      reinforcement: {
+        lead: "Wonder is not something the world hands you only on special days. Often it appears when the noise drops and ordinary life gets your full attention.",
+        idea: "The sunset is not the point. The seeing is.",
+        bullets: [
+          "Beauty does not always create wonder; attention helps open the door.",
+          "The ordinary can become vivid when you stop using it for a moment.",
+          "Wonder is less about chasing magic and more about lowering the noise."
+        ],
+        practice: "Choose one ordinary thing — a cup, a tree, the light on a wall. Look without naming its use. Stay for ten slow breaths."
+      }
     }
   };
 
@@ -774,10 +1029,46 @@
       number: String(number).padStart(2, '0'),
       word: meta.word || 'Field Note',
       theme: meta.theme || section.title,
+      essaySlug: meta.essaySlug || '',
+      reinforcement: meta.reinforcement || null,
       displayTitle: cleanTitle(video),
       summary: meta.summary || fallbackSummary,
       explainer: meta.explainer || 'Field note: watch once without taking notes. Then return to the question it leaves behind and write one honest sentence.'
     };
+  }
+
+  function essayForLesson(lesson) {
+    const essays = window.SOULSAFARI_ESSAYS || [];
+    return essays.find((essay) => essay.slug === lesson.essaySlug);
+  }
+
+  function setEssayPreview(lesson) {
+    const essay = essayForLesson(lesson);
+    const panel = document.getElementById('essayDeepening');
+    const title = document.getElementById('reinforceTitle');
+    const lead = document.getElementById('reinforceLead');
+    const idea = document.getElementById('reinforceIdea');
+    const bullets = document.getElementById('reinforceBullets');
+    const practice = document.getElementById('reinforcePractice');
+    const link = document.getElementById('lessonEssayLink');
+
+    if (!essay && !lesson.reinforcement) {
+      panel.style.display = 'none';
+      return;
+    }
+
+    const reinforcement = lesson.reinforcement || {};
+    title.textContent = 'Carry it with you';
+    lead.textContent = reinforcement.lead || essay.opening?.[0] || essay.excerpt || 'A simple way to carry the lesson into the rest of your day.';
+    idea.textContent = reinforcement.idea || lesson.summary;
+    bullets.innerHTML = (reinforcement.bullets || [
+      'Notice the idea without trying to master it immediately.',
+      'Let one phrase stay with you after the video.',
+      'Return to the practice when the pattern appears in daily life.'
+    ]).map((item) => `<li>${item}</li>`).join('');
+    practice.textContent = reinforcement.practice || lesson.explainer.replace(/^Field note:\s*/i, '');
+    link.href = essay ? `blog.html?post=${encodeURIComponent(essay.slug)}` : 'blog.html';
+    panel.style.display = '';
   }
 
   function setFeaturedLesson(lesson) {
@@ -793,11 +1084,20 @@
     document.getElementById('lessonTitle').textContent = lesson.displayTitle;
     document.getElementById('lessonSummary').textContent = lesson.summary;
     document.getElementById('lessonExplainer').textContent = lesson.explainer;
-    document.getElementById('lessonYoutube').href = lesson.url || `https://www.youtube.com/watch?v=${lesson.id}`;
+    setEssayPreview(lesson);
     updateCompleteButton(lesson.id);
+    syncActiveLessonRow(lesson.id);
+  }
 
+  function syncActiveLessonRow(id = currentLessonId) {
     document.querySelectorAll('.lesson-row').forEach((row) => {
-      row.classList.toggle('active', row.dataset.videoId === lesson.id);
+      const active = row.dataset.videoId === id;
+      row.classList.toggle('active', active);
+      if (active) {
+        row.setAttribute('aria-current', 'true');
+      } else {
+        row.removeAttribute('aria-current');
+      }
     });
   }
 
@@ -807,6 +1107,35 @@
     button.classList.toggle('done', done);
     button.textContent = done ? 'Completed ✓' : 'Mark complete';
     button.setAttribute('aria-pressed', String(done));
+    updateNextButton(id);
+  }
+
+  function allLessons() {
+    return currentSections.flatMap((section) => section.lessons);
+  }
+
+  function nextLessonAfter(id) {
+    const lessons = allLessons();
+    const index = lessons.findIndex((lesson) => lesson.id === id);
+    return index >= 0 ? lessons[index + 1] : null;
+  }
+
+  function goToLesson(lesson) {
+    if (!lesson) return;
+    setFeaturedLesson(lesson);
+    showPanel('watchPanel');
+    document.querySelector('.lesson-stage')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'start'
+    });
+  }
+
+  function updateNextButton(id) {
+    const button = document.getElementById('nextLesson');
+    const next = nextLessonAfter(id);
+    button.disabled = !next;
+    button.textContent = next ? 'Next lesson →' : 'Journey complete';
   }
 
   function refreshProgressUI() {
@@ -814,6 +1143,7 @@
     document.querySelectorAll('.lesson-row').forEach((row) => {
       row.classList.toggle('done', completed.has(row.dataset.videoId));
     });
+    syncActiveLessonRow();
     document.querySelectorAll('.module').forEach((module) => {
       const rows = Array.from(module.querySelectorAll('.lesson-row'));
       const done = rows.filter((row) => completed.has(row.dataset.videoId)).length;
@@ -834,7 +1164,7 @@
 
     const copy = document.createElement('span');
     copy.append(
-      setText(document.createElement('small'), lesson.word),
+      setText(document.createElement('small'), `Lesson ${lesson.number} · ${lesson.word}`),
       setText(document.createElement('strong'), lesson.displayTitle)
     );
 
@@ -848,7 +1178,7 @@
 
   function makeModule(section, index) {
     const module = document.createElement('article');
-    module.className = `module${index === 0 ? '' : ' closed'}`;
+    module.className = 'module';
 
     const toggle = document.createElement('button');
     toggle.className = 'module-toggle';
@@ -857,19 +1187,17 @@
     const copy = document.createElement('span');
     copy.append(
       setText(document.createElement('span'), section.label),
-      setText(document.createElement('span'), section.title)
+      setText(document.createElement('span'), section.title),
+      setText(document.createElement('span'), section.description)
     );
     copy.firstChild.className = 'module-label';
-    copy.lastChild.className = 'module-title';
+    copy.children[1].className = 'module-title';
+    copy.lastChild.className = 'module-description';
 
     const count = setText(document.createElement('span'), `${section.lessons.length} lesson${section.lessons.length === 1 ? '' : 's'}`);
     count.className = 'module-count';
     toggle.append(copy, count);
     toggle.addEventListener('click', () => {
-      document.querySelectorAll('.module').forEach((item) => {
-        if (item !== module) item.classList.add('closed');
-      });
-      module.classList.remove('closed');
       if (section.lessons[0]) {
         setFeaturedLesson(section.lessons[0]);
         showPanel('watchPanel');
@@ -959,12 +1287,18 @@
     if (!currentLessonId) return;
     const progress = loadProgress();
     const completed = new Set(progress.completed || []);
-    if (completed.has(currentLessonId)) completed.delete(currentLessonId);
-    else completed.add(currentLessonId);
+    completed.add(currentLessonId);
     progress.completed = Array.from(completed);
     progress.current = currentLessonId;
     saveProgress(progress);
     refreshProgressUI();
+    const next = nextLessonAfter(currentLessonId);
+    if (next) goToLesson(next);
+  });
+
+  document.getElementById('nextLesson').addEventListener('click', () => {
+    const next = nextLessonAfter(currentLessonId);
+    if (next) goToLesson(next);
   });
 
   loadLessons();

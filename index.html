@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SoulSafari — A Quiet Exploration</title>
-  <meta name="description" content="A quiet exploration of alignment, clarity, and the deeper direction of your life. Take the two-minute Self Safari and receive a thoughtful guide for what comes next." />
+  <meta name="description" content="A quiet exploration of alignment, clarity, and the deeper direction of your life. Choose a path: take the quiz, begin Learn Safari, or read the essays." />
   <meta name="theme-color" content="#131a16" />
   <link rel="canonical" href="https://soulsafari.in/" />
   <link rel="icon" type="image/png" href="assets/soulsafari-logo.png" />
@@ -14,7 +14,7 @@
   <meta property="og:locale" content="en_AU" />
   <meta property="og:url" content="https://soulsafari.in/" />
   <meta property="og:title" content="SoulSafari — A Quiet Exploration" />
-  <meta property="og:description" content="Pause. Look inward. Notice what is true. Take the two-minute Self Safari and receive a thoughtful guide for what comes next." />
+  <meta property="og:description" content="Pause. Look inward. Notice what is true. Choose a path: take the quiz, begin Learn Safari, or read the essays." />
   <meta property="og:image" content="https://soulsafari.in/assets/soulsafari-og.png" />
   <meta property="og:image:secure_url" content="https://soulsafari.in/assets/soulsafari-og.png" />
   <meta property="og:image:width" content="1200" />
@@ -24,7 +24,7 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="SoulSafari — A Quiet Exploration" />
-  <meta name="twitter:description" content="Pause. Look inward. Notice what is true. Take the two-minute Self Safari." />
+  <meta name="twitter:description" content="Pause. Look inward. Notice what is true. Choose your SoulSafari path." />
   <meta name="twitter:image" content="https://soulsafari.in/assets/soulsafari-og.png" />
   <meta name="twitter:image:alt" content="SoulSafari — a quiet exploration of alignment, clarity, and direction" />
 
@@ -35,7 +35,24 @@
     "name": "SoulSafari",
     "url": "https://soulsafari.in/",
     "description": "A quiet exploration of alignment, clarity, and the deeper direction of your life.",
-    "sameAs": ["https://www.youtube.com/@soulsafari108"]
+    "sameAs": ["https://www.youtube.com/@soulsafari108"],
+    "hasPart": [
+      {
+        "@type": "WebPage",
+        "name": "Learn Safari",
+        "url": "https://soulsafari.in/learn.html"
+      },
+      {
+        "@type": "WebPage",
+        "name": "SoulSafari Quiz",
+        "url": "https://soulsafari.in/quiz.html"
+      },
+      {
+        "@type": "Blog",
+        "name": "SoulSafari Essays",
+        "url": "https://soulsafari.in/blog.html"
+      }
+    ]
   }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -177,16 +194,15 @@
   .site-header {
     position: fixed; top: 16px; left: 50%;
     transform: translateX(-50%);
-    width: min(calc(100% - 32px), 1040px); height: 62px;
+    width: min(calc(100% - 32px), 1180px); height: 62px;
     display: flex; align-items: center; justify-content: space-between;
     padding: 8px 10px 8px 16px;
-    background: rgba(250,248,243,0.58);
+    background: rgba(250,248,243,0.66);
     border: 1px solid rgba(255,255,255,0.78);
     border-radius: 18px;
     box-shadow:
       0 12px 42px rgba(12,20,15,0.13),
-      inset 0 1px 0 rgba(255,255,255,0.76),
-      inset 0 -1px 0 rgba(107,159,113,0.09);
+      inset 0 1px 0 rgba(255,255,255,0.76);
     backdrop-filter: blur(26px) saturate(150%);
     -webkit-backdrop-filter: blur(26px) saturate(150%);
     isolation: isolate; overflow: hidden; z-index: 9995;
@@ -217,22 +233,6 @@
     transition: color .2s, background .2s, transform .2s;
   }
   .site-links > a:hover { color: var(--ink); background: rgba(255,255,255,0.38); }
-  .site-links .site-learn-link {
-    background: rgba(255,255,255,0.28);
-    border: 1px solid rgba(107,159,113,0.16);
-  }
-  .site-links .site-quiz-link {
-    display: inline-flex; align-items: center; gap: 8px;
-    color: white; background: var(--accent-dk); padding: 11px 17px;
-    box-shadow: 0 6px 18px rgba(77,122,84,0.24);
-  }
-  .site-links .site-quiz-link:hover {
-    color: white; background: var(--dark); transform: translateY(-1px);
-  }
-  .quiz-link-dot {
-    width: 6px; height: 6px; border-radius: 50%; background: #d9f0dc;
-    box-shadow: 0 0 0 4px rgba(217,240,220,0.18);
-  }
   .mobile-label { display: none; }
 
   /* ════════════════════════════════════════════
@@ -292,33 +292,36 @@
     color: #f0ece4; text-align: center; margin: 36px 0; line-height: 1.55;
   }
   .hero-actions {
-    display: flex; align-items: stretch; justify-content: center; gap: 12px;
-    margin-top: 44px;
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;
+    max-width: 760px; margin: 44px auto 0;
   }
   .hero-cta {
-    min-height: 62px; display: inline-flex; align-items: center;
-    justify-content: center; text-decoration: none; border-radius: 14px;
+    min-height: 126px; display: flex; flex-direction: column; align-items: flex-start;
+    justify-content: space-between; gap: 18px; text-decoration: none; border-radius: 18px;
+    padding: 18px; color: rgba(240,236,228,0.82);
+    border: 1px solid rgba(240,236,228,0.18);
+    background: rgba(255,255,255,0.055);
+    text-align: left;
     transition: transform .25s, background .25s, border-color .25s, box-shadow .25s;
   }
-  .hero-cta.primary {
-    min-width: 270px; flex-direction: column; padding: 12px 24px;
-    color: white; background: var(--accent);
-    box-shadow: 0 12px 35px rgba(77,122,84,0.35);
+  .hero-cta strong {
+    display: block; color: #f0ece4;
+    font-size: 0.88rem; letter-spacing: 0.11em; text-transform: uppercase;
   }
-  .hero-cta.primary strong {
-    font-size: 0.83rem; letter-spacing: 0.11em; text-transform: uppercase;
+  .hero-cta small {
+    display: block; margin-top: 8px; color: rgba(240,236,228,0.62);
+    font-size: 0.82rem; line-height: 1.45;
   }
-  .hero-cta.primary small {
-    margin-top: 3px; color: rgba(255,255,255,0.76); font-size: 0.78rem;
-  }
-  .hero-cta.secondary {
-    padding: 12px 22px; color: rgba(240,236,228,0.82);
-    border: 1px solid rgba(240,236,228,0.22);
-    background: rgba(255,255,255,0.05); font-size: 0.78rem; font-weight: 500;
+  .hero-cta::after {
+    content: '→';
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%;
+    color: var(--dark); background: var(--accent-lt);
+    font-weight: 700;
   }
   .hero-cta:hover { transform: translateY(-3px); }
-  .hero-cta.primary:hover { background: var(--accent-dk); box-shadow: 0 16px 42px rgba(77,122,84,0.45); }
-  .hero-cta.secondary:hover { border-color: rgba(240,236,228,0.46); background: rgba(255,255,255,0.1); }
+  .hero-cta:hover { border-color: rgba(168,201,172,0.46); background: rgba(255,255,255,0.1); box-shadow: 0 16px 42px rgba(0,0,0,0.24); }
+  .hero-cta.featured { background: rgba(107,159,113,0.18); border-color: rgba(168,201,172,0.42); }
   .scroll-hint {
     display: flex; flex-direction: column; align-items: center; gap: 9px;
     margin-top: 68px; color: rgba(198,180,138,0.8);
@@ -378,7 +381,7 @@
   .wisdom-panel blockquote {
     margin-top: 20px; padding: 20px 24px;
     background: rgba(107,159,113,0.06);
-    border-left: 2px solid var(--accent); border-radius: 0 8px 8px 0;
+    border-left: 2px solid var(--accent); border-radius: 0 18px 18px 0;
     font-family: 'Playfair Display', Georgia, serif;
     font-style: italic; font-size: 0.95rem; color: var(--ink);
     line-height: 1.65;
@@ -413,7 +416,7 @@
   .quiz-heading .section-title { margin-bottom: 26px; }
   .quiz-heading-copy > p { margin-bottom: 0; }
   .quiz-meta {
-    padding: 22px; border-radius: 16px;
+    padding: 22px; border-radius: 18px;
     background: rgba(255,255,255,0.62);
     border: 1px solid rgba(255,255,255,0.82);
     box-shadow: 0 12px 35px rgba(45,78,51,0.08);
@@ -436,7 +439,7 @@
 
   .quiz-wrap {
     background: white;
-    border-radius: 20px;
+    border-radius: 18px;
     border: 1px solid rgba(107,159,113,0.15);
     box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.08), 0 40px 80px rgba(0,0,0,0.04);
     overflow: hidden; margin-top: 38px; position: relative;
@@ -502,7 +505,7 @@
   .q-opt {
     background: var(--cream);
     border: 1.5px solid var(--sand-lt);
-    border-radius: 10px; padding: 14px 20px;
+    border-radius: 18px; padding: 14px 20px;
     font-size: 0.95rem; color: var(--ink);
     font-family: 'Inter', sans-serif; cursor: pointer;
     text-align: left; transition: border-color .2s, background .2s, transform .15s;
@@ -535,7 +538,7 @@
   .qr-text { font-size: 1rem; color: var(--muted); margin-bottom: 28px; max-width: 100%; }
   .qr-next {
     margin: 32px 0 22px; padding: 24px;
-    border-radius: 16px; background: linear-gradient(135deg, #edf5ee, #f8f6ee);
+    border-radius: 18px; background: linear-gradient(135deg, #edf5ee, #f8f6ee);
     border: 1px solid rgba(107,159,113,0.22);
   }
   .qr-next-label {
@@ -550,7 +553,7 @@
   .qr-next p { margin: 0; max-width: 100%; color: var(--muted); font-size: 0.96rem; line-height: 1.65; }
   .guide-form {
     margin: 24px 0 18px; padding: 24px;
-    border-radius: 16px; background: var(--dark);
+    border-radius: 18px; background: var(--dark);
     border: 1px solid rgba(255,255,255,0.08);
     box-shadow: 0 18px 48px rgba(19,26,22,0.16);
   }
@@ -566,7 +569,7 @@
   .guide-form-row { display: flex; align-items: stretch; gap: 9px; }
   .guide-email {
     min-width: 0; flex: 1; height: 48px; padding: 0 15px;
-    border: 1px solid rgba(255,255,255,0.16); border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.16); border-radius: 18px;
     background: rgba(255,255,255,0.09); color: white;
     font: inherit; font-size: 0.92rem; outline: none;
     transition: border-color .2s, background .2s, box-shadow .2s;
@@ -577,7 +580,7 @@
     box-shadow: 0 0 0 4px rgba(168,201,172,0.12);
   }
   .guide-submit {
-    height: 48px; padding: 0 19px; border: 0; border-radius: 10px;
+    height: 48px; padding: 0 19px; border: 0; border-radius: 18px;
     color: white; background: var(--accent); cursor: pointer;
     font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600;
     letter-spacing: 0.06em; white-space: nowrap;
@@ -627,7 +630,7 @@
   @media (max-width: 560px) { .dim-grid { grid-template-columns: 1fr; } }
 
   .dim-card {
-    background: white; border-radius: 16px;
+    background: white; border-radius: 18px;
     border: 1px solid rgba(0,0,0,0.06);
     box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
     padding: 32px 26px; position: relative; overflow: hidden;
@@ -646,7 +649,7 @@
   .dim-card.open::after { opacity: 1; }
 
   .dim-icon {
-    width: 38px; height: 38px; border-radius: 9px;
+    width: 38px; height: 38px; border-radius: 18px;
     background: linear-gradient(135deg, rgba(107,159,113,0.12), rgba(107,159,113,0.05));
     border: 1px solid rgba(107,159,113,0.15);
     display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
@@ -732,7 +735,7 @@
 
   .sig-summary {
     margin-top: 36px; padding: 22px 26px;
-    background: white; border-radius: 12px;
+    background: white; border-radius: 18px;
     border: 1px solid rgba(107,159,113,0.2);
     opacity: 0; transform: translateY(8px);
     transition: opacity .5s ease, transform .5s ease;
@@ -814,7 +817,7 @@
   @media (max-width: 560px) { .two-col { grid-template-columns: 1fr; } }
   .tcol {
     background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 14px; padding: 32px 26px; backdrop-filter: blur(4px);
+    border-radius: 18px; padding: 32px 26px; backdrop-filter: blur(4px);
   }
   .tcol .lbl {
     font-size: 12px; font-weight: 600; letter-spacing: 0.18em;
@@ -856,14 +859,14 @@
   }
   .channel-link svg { width: 17px; height: 17px; flex-shrink: 0; }
   .video-shell {
-    padding: 12px; border-radius: 24px;
+    padding: 12px; border-radius: 18px;
     background: linear-gradient(145deg, #18221b, #0f1511);
     border: 1px solid rgba(255,255,255,0.08);
     box-shadow: 0 28px 80px rgba(27,44,31,0.24);
   }
   .video-frame {
     position: relative; overflow: hidden; aspect-ratio: 16 / 9;
-    border-radius: 15px; background: #0c120e;
+    border-radius: 18px; background: #0c120e;
   }
   .video-frame iframe {
     position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
@@ -1002,7 +1005,7 @@
   @media (max-width: 680px) {
     .site-header {
       top: 10px; width: calc(100% - 20px); height: 56px;
-      padding: 7px 8px 7px 12px; border-radius: 15px;
+      padding: 7px 8px 7px 12px; border-radius: 18px;
       background: rgba(250,248,243,0.68);
       backdrop-filter: blur(22px) saturate(145%);
       -webkit-backdrop-filter: blur(22px) saturate(145%);
@@ -1013,14 +1016,10 @@
     .site-links { gap: 6px; }
     .site-links .site-idea-link { display: none; }
     .site-links > a { padding: 9px 11px; font-size: 0.68rem; letter-spacing: 0.07em; }
-    .site-links .site-learn-link { display: inline-flex; background: rgba(255,255,255,0.44); }
-    .site-links .site-quiz-link { padding: 9px 11px; font-size: 0.68rem; }
-    .site-links .site-quiz-link .quiz-link-dot { display: none; }
     .site-links .desktop-label { display: none; }
     .site-links .mobile-label { display: inline; }
-    .hero-actions { flex-direction: column; }
-    .hero-cta.primary { min-width: 0; width: 100%; }
-    .hero-cta.secondary { width: 100%; }
+    .hero-actions { grid-template-columns: 1fr; }
+    .hero-cta { min-height: 108px; }
     .quiz-heading { grid-template-columns: 1fr; gap: 24px; }
     .quiz-meta { padding: 18px 20px; }
     .quiz-meta-list { margin-top: 12px; }
@@ -1029,8 +1028,8 @@
     .wisdom-panel-inner > .wisdom-step { margin-left: 0; }
     .video-heading { grid-template-columns: 1fr; align-items: start; gap: 24px; }
     .channel-link { justify-self: start; }
-    .video-shell { padding: 7px; border-radius: 17px; }
-    .video-frame { border-radius: 11px; }
+    .video-shell { padding: 7px; border-radius: 18px; }
+    .video-frame { border-radius: 18px; }
     .video-note { align-items: flex-start; flex-direction: column; gap: 6px; padding: 0 5px 4px; }
   }
 
@@ -1055,7 +1054,7 @@
     margin-top: 28px; padding: 18px 22px;
     background: rgba(107,159,113,0.05);
     border: 1px solid rgba(107,159,113,0.2) !important;
-    border-radius: 14px;
+    border-radius: 18px;
     transition: background .3s, border-color .3s, box-shadow .3s !important;
     letter-spacing: 0 !important; color: inherit !important;
   }
@@ -1140,7 +1139,7 @@
 
   /* Mouse-tracking spotlight */
   .dim-card::before {
-    content: ''; position: absolute; inset: 0; border-radius: 16px;
+    content: ''; position: absolute; inset: 0; border-radius: 18px;
     background: radial-gradient(circle at var(--mx,50%) var(--my,50%),
       rgba(107,159,113,0.09) 0%, transparent 58%);
     opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 0;
@@ -1283,19 +1282,15 @@
       <span>SoulSafari</span>
     </a>
     <nav class="site-links" aria-label="Primary navigation">
-      <a class="site-idea-link" href="#idea">The idea</a>
-      <a class="site-learn-link" href="learn.html"><span class="desktop-label">Learn Safari</span><span class="mobile-label">Learn</span></a>
-      <a class="site-quiz-link" href="#selfsafari">
-        <span class="quiz-link-dot" aria-hidden="true"></span>
-        <span class="desktop-label">Take the 2-minute quiz</span><span class="mobile-label">Quiz</span>
-      </a>
+      <a href="learn.html">Learn</a>
+      <a href="blog.html">Blog</a>
+      <a href="quiz.html">Quiz</a>
     </nav>
   </header>
 
   <nav id="section-dots" aria-label="Section navigation">
     <div class="sdot active" data-target="hero"         title="Home"></div>
     <div class="sdot"        data-target="idea"         title="The Idea"></div>
-    <div class="sdot"        data-target="selfsafari"   title="Self Safari"></div>
     <div class="sdot"        data-target="landscape"    title="Landscape"></div>
     <div class="sdot"        data-target="alignment"    title="Alignment"></div>
     <div class="sdot"        data-target="misalignment" title="Misalignment"></div>
@@ -1319,12 +1314,25 @@
         <em class="hero-q">Does the life I am building actually feel right?</em>
         <p>SoulSafari is a space for reflection. A place to step back, observe your inner landscape, and rediscover direction.</p>
       </div>
-      <div class="hero-actions r d4">
-        <a class="hero-cta primary" href="#selfsafari">
-          <strong>Take the Self Safari</strong>
-          <small>5 questions · 2 minutes · instant reflection</small>
+      <div class="hero-actions r d4" aria-label="Choose your SoulSafari path">
+        <a class="hero-cta featured" href="quiz.html">
+          <span>
+            <strong>Quiz</strong>
+            <small>Start here if you want a quick reflection and a guide.</small>
+          </span>
         </a>
-        <a class="hero-cta secondary" href="#idea">Explore the idea ↓</a>
+        <a class="hero-cta" href="learn.html">
+          <span>
+            <strong>Learn</strong>
+            <small>Follow the video journey through eight ideas.</small>
+          </span>
+        </a>
+        <a class="hero-cta" href="blog.html">
+          <span>
+            <strong>Blog</strong>
+            <small>Read the essays behind the lessons.</small>
+          </span>
+        </a>
       </div>
       <div class="scroll-hint r d4" aria-hidden="true">
         <span>Explore</span>
@@ -1408,141 +1416,6 @@
           </div>
         </div>
       </div>
-
-    </div>
-  </section>
-
-
-  <!-- ════════════════════════
-       §3  SELF SAFARI — QUIZ
-  ════════════════════════ -->
-  <section id="selfsafari">
-    <div class="container">
-
-      <div class="quiz-heading">
-        <div class="quiz-heading-copy">
-          <span class="eyebrow r">Featured Experience</span>
-          <h2 class="section-title r">Your Self Safari</h2>
-          <p class="r">A short reflection designed to help you notice how aligned your life currently feels. Five honest questions. No right answers.</p>
-        </div>
-        <aside class="quiz-meta r d1" aria-label="Quiz details">
-          <strong>Two quiet minutes.</strong>
-          <span>A private check-in with where you are right now.</span>
-          <div class="quiz-meta-list" aria-hidden="true">
-            <span>5 questions</span>
-            <span>No sign-up</span>
-          </div>
-        </aside>
-      </div>
-
-      <div class="quiz-wrap r d2">
-        <div class="quiz-img-strip">
-          <div class="quiz-img-label">
-            <span>Begin here</span>
-            <strong>Check in with yourself</strong>
-          </div>
-        </div>
-        <div class="quiz-inner">
-
-          <div class="qprog-track">
-            <div class="qprog-bar" id="qProgBar"></div>
-          </div>
-
-          <!-- Q1 -->
-          <div class="quiz-step active" id="qs0">
-            <p class="q-counter">Question 1 of 5</p>
-            <p class="q-text">When you wake up most mornings, what is your dominant feeling about the day ahead?</p>
-            <div class="q-opts">
-              <button class="q-opt" onclick="QUIZ.answer(4)">Genuine curiosity and energy</button>
-              <button class="q-opt" onclick="QUIZ.answer(3)">Generally positive, though it varies</button>
-              <button class="q-opt" onclick="QUIZ.answer(2)">A low-level reluctance</button>
-              <button class="q-opt" onclick="QUIZ.answer(1)">A heaviness I try to push through</button>
-            </div>
-          </div>
-
-          <!-- Q2 -->
-          <div class="quiz-step" id="qs1">
-            <p class="q-counter">Question 2 of 5</p>
-            <p class="q-text">How often does your work feel meaningful — beyond simply earning a living?</p>
-            <div class="q-opts">
-              <button class="q-opt" onclick="QUIZ.answer(4)">Almost always</button>
-              <button class="q-opt" onclick="QUIZ.answer(3)">Often, though not every day</button>
-              <button class="q-opt" onclick="QUIZ.answer(2)">Occasionally, in fleeting moments</button>
-              <button class="q-opt" onclick="QUIZ.answer(1)">Rarely or never</button>
-            </div>
-          </div>
-
-          <!-- Q3 -->
-          <div class="quiz-step" id="qs2">
-            <p class="q-counter">Question 3 of 5</p>
-            <p class="q-text">When you imagine your life five years from now, what feeling arises?</p>
-            <div class="q-opts">
-              <button class="q-opt" onclick="QUIZ.answer(4)">Genuine excitement and possibility</button>
-              <button class="q-opt" onclick="QUIZ.answer(3)">Cautious hope, mixed with uncertainty</button>
-              <button class="q-opt" onclick="QUIZ.answer(2)">Quiet unease or restlessness</button>
-              <button class="q-opt" onclick="QUIZ.answer(1)">I prefer not to think too far ahead</button>
-            </div>
-          </div>
-
-          <!-- Q4 -->
-          <div class="quiz-step" id="qs3">
-            <p class="q-counter">Question 4 of 5</p>
-            <p class="q-text">After spending time with the people closest to you, how do you usually feel?</p>
-            <div class="q-opts">
-              <button class="q-opt" onclick="QUIZ.answer(4)">Energised, seen, and deeply connected</button>
-              <button class="q-opt" onclick="QUIZ.answer(3)">Comfortable, though not always deeply met</button>
-              <button class="q-opt" onclick="QUIZ.answer(2)">Somewhat hollow or misunderstood</button>
-              <button class="q-opt" onclick="QUIZ.answer(1)">Often drained or performing a version of myself</button>
-            </div>
-          </div>
-
-          <!-- Q5 -->
-          <div class="quiz-step" id="qs4">
-            <p class="q-counter">Question 5 of 5</p>
-            <p class="q-text">When you sit quietly without distraction — no phone, no task — what do you notice?</p>
-            <div class="q-opts">
-              <button class="q-opt" onclick="QUIZ.answer(4)">A sense of quiet peace or clarity</button>
-              <button class="q-opt" onclick="QUIZ.answer(3)">Some restlessness, but I can settle</button>
-              <button class="q-opt" onclick="QUIZ.answer(2)">Persistent thoughts I can't slow down</button>
-              <button class="q-opt" onclick="QUIZ.answer(1)">Deep discomfort — I rarely allow it</button>
-            </div>
-          </div>
-
-          <!-- Result -->
-          <div class="quiz-result" id="quizResult" role="status" aria-live="polite" tabindex="-1">
-            <div class="qr-bar-wrap">
-              <p class="qr-label" id="qrLabel">Your alignment signal</p>
-              <div class="qr-track"><div class="qr-fill" id="qrFill"></div></div>
-            </div>
-            <p class="qr-title" id="qrTitle"></p>
-            <p class="qr-text"  id="qrText"></p>
-            <div class="qr-next">
-              <span class="qr-next-label">What happens next</span>
-              <h3>Follow the signal into your landscape.</h3>
-              <p>Your result is a starting point, not a verdict. Next, explore the six dimensions that shape how aligned a life feels.</p>
-            </div>
-            <form class="guide-form" id="guideForm" onsubmit="GUIDE.send(event)" novalidate>
-              <label for="guideEmail">Send the full guide to your inbox</label>
-              <p class="guide-form-copy">Seven thoughtful pages to help you sit with your result and decide what comes next.</p>
-              <div class="guide-form-row">
-                <input class="guide-email" id="guideEmail" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="guidePrivacy guideStatus" />
-                <button class="guide-submit" type="submit">Send my guide</button>
-              </div>
-              <div class="guide-honeypot" aria-hidden="true">
-                <label for="guideWebsite">Leave this field empty</label>
-                <input id="guideWebsite" name="website" type="text" tabindex="-1" autocomplete="off" />
-              </div>
-              <p class="guide-privacy" id="guidePrivacy">One useful email. No list, no noise.</p>
-              <p class="guide-status" id="guideStatus" role="status" aria-live="polite"></p>
-            </form>
-            <div class="qr-actions">
-              <a class="qr-continue" href="#landscape">Explore your life landscape →</a>
-              <a class="qr-continue secondary" href="learn.html">Continue with Learn Safari</a>
-            </div>
-          </div>
-
-        </div><!-- /quiz-inner -->
-      </div><!-- /quiz-wrap -->
 
     </div>
   </section>
@@ -1799,7 +1672,7 @@
         </div>
         <div class="video-note">
           <span><span class="video-live-dot" aria-hidden="true"></span><strong>Learn Safari</strong> · Continue through the lessons at your own pace.</span>
-          <span><a href="learn.html">Open Learn Safari →</a></span>
+          <span><a href="learn.html">Open Learn Safari →</a> · <a href="blog.html">Read the essays →</a></span>
         </div>
       </div>
     </div>
@@ -1864,6 +1737,7 @@
 
       <p class="r d3">Each journey begins the same way.</p>
       <p class="journey-cta r d3"><a href="learn.html">Continue into the Learn Safari →</a></p>
+      <p class="journey-cta r d3"><a href="blog.html">Read the SoulSafari essays →</a></p>
 
       <div class="finale">
         <div class="finale-words" id="finaleWords">
@@ -1904,7 +1778,7 @@
   /* ═══════════════════════════════════════════
      SCROLL PROGRESS BAR + SECTION DOTS
   ═══════════════════════════════════════════ */
-  const sections = ['hero','idea','selfsafari','landscape','alignment','misalignment','reflection','videos','journey'];
+  const sections = ['hero','idea','landscape','alignment','misalignment','reflection','videos','journey'];
   const dots = document.querySelectorAll('.sdot');
   const bar  = document.getElementById('progress-bar');
 
@@ -2144,7 +2018,6 @@
 
   // 3. Inject interactive badges into interactive sections
   const badgeSections = [
-    { id: 'selfsafari',   text: 'Interactive · Take the quiz'      },
     { id: 'landscape',    text: 'Interactive · Tap cards to explore'},
     { id: 'alignment',    text: 'Interactive · Tap to recognise'   },
     { id: 'misalignment', text: 'Interactive · Tap to recognise'   },
