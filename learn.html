@@ -861,7 +861,16 @@
     const count = setText(document.createElement('span'), `${section.lessons.length} lesson${section.lessons.length === 1 ? '' : 's'}`);
     count.className = 'module-count';
     toggle.append(copy, count);
-    toggle.addEventListener('click', () => module.classList.toggle('closed'));
+    toggle.addEventListener('click', () => {
+      document.querySelectorAll('.module').forEach((item) => {
+        if (item !== module) item.classList.add('closed');
+      });
+      module.classList.remove('closed');
+      if (section.lessons[0]) {
+        setFeaturedLesson(section.lessons[0]);
+        showPanel('watchPanel');
+      }
+    });
 
     const lessons = document.createElement('div');
     lessons.className = 'module-lessons';
