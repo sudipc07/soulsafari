@@ -4,6 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SoulSafari — A Quiet Exploration</title>
+  <meta name="description" content="A quiet exploration of alignment, clarity, and the deeper direction of your life. Take the two-minute Self Safari and receive a thoughtful guide for what comes next." />
+  <meta name="theme-color" content="#131a16" />
+  <link rel="canonical" href="https://soulsafari.in/" />
+  <link rel="icon" type="image/png" href="assets/soulsafari-logo.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SoulSafari" />
+  <meta property="og:locale" content="en_AU" />
+  <meta property="og:url" content="https://soulsafari.in/" />
+  <meta property="og:title" content="SoulSafari — A Quiet Exploration" />
+  <meta property="og:description" content="Pause. Look inward. Notice what is true. Take the two-minute Self Safari and receive a thoughtful guide for what comes next." />
+  <meta property="og:image" content="https://soulsafari.in/assets/soulsafari-og.png" />
+  <meta property="og:image:secure_url" content="https://soulsafari.in/assets/soulsafari-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="SoulSafari — a quiet exploration of alignment, clarity, and direction" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SoulSafari — A Quiet Exploration" />
+  <meta name="twitter:description" content="Pause. Look inward. Notice what is true. Take the two-minute Self Safari." />
+  <meta name="twitter:image" content="https://soulsafari.in/assets/soulsafari-og.png" />
+  <meta name="twitter:image:alt" content="SoulSafari — a quiet exploration of alignment, clarity, and direction" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "SoulSafari",
+    "url": "https://soulsafari.in/",
+    "description": "A quiet exploration of alignment, clarity, and the deeper direction of your life.",
+    "sameAs": ["https://www.youtube.com/@soulsafari108"]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -99,7 +133,7 @@
      LAYOUT & TYPE
   ════════════════════════════════════════════ */
   .container { max-width: 760px; margin: 0 auto; padding: 0 36px; }
-  section { padding: 120px 0; position: relative; }
+  section { padding: 120px 0; position: relative; scroll-margin-top: 92px; }
 
   h2, h3 {
     font-family: 'Playfair Display', Georgia, serif;
@@ -111,7 +145,7 @@
 
   .eyebrow {
     display: inline-flex; align-items: center; gap: 10px;
-    font-size: 10px; font-weight: 600; letter-spacing: 0.26em;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.22em;
     text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
   }
   .eyebrow::before { content: ''; width: 20px; height: 1.5px; background: currentColor; flex-shrink: 0; }
@@ -138,12 +172,76 @@
   .d5{transition-delay:.35s} .d6{transition-delay:.42s}
 
   /* ════════════════════════════════════════════
+     FLOATING SITE NAVIGATION
+  ════════════════════════════════════════════ */
+  .site-header {
+    position: fixed; top: 16px; left: 50%;
+    transform: translateX(-50%);
+    width: min(calc(100% - 32px), 1040px); height: 62px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 10px 8px 16px;
+    background: rgba(250,248,243,0.58);
+    border: 1px solid rgba(255,255,255,0.78);
+    border-radius: 18px;
+    box-shadow:
+      0 12px 42px rgba(12,20,15,0.13),
+      inset 0 1px 0 rgba(255,255,255,0.76),
+      inset 0 -1px 0 rgba(107,159,113,0.09);
+    backdrop-filter: blur(26px) saturate(150%);
+    -webkit-backdrop-filter: blur(26px) saturate(150%);
+    isolation: isolate; overflow: hidden; z-index: 9995;
+  }
+  .site-header::before {
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(115deg,
+      rgba(255,255,255,0.44) 0%,
+      rgba(255,255,255,0.10) 46%,
+      rgba(168,201,172,0.13) 100%);
+    pointer-events: none;
+  }
+  .site-brand {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: var(--ink); text-decoration: none;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em;
+  }
+  .site-brand img {
+    width: 34px; height: 34px; object-fit: contain;
+    filter: drop-shadow(0 2px 5px rgba(32,61,38,0.13));
+  }
+  .site-links { display: flex; align-items: center; gap: 8px; }
+  .site-links > a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 10px 14px; border-radius: 999px;
+    transition: color .2s, background .2s, transform .2s;
+  }
+  .site-links > a:hover { color: var(--ink); background: rgba(255,255,255,0.38); }
+  .site-links .site-learn-link {
+    background: rgba(255,255,255,0.28);
+    border: 1px solid rgba(107,159,113,0.16);
+  }
+  .site-links .site-quiz-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: white; background: var(--accent-dk); padding: 11px 17px;
+    box-shadow: 0 6px 18px rgba(77,122,84,0.24);
+  }
+  .site-links .site-quiz-link:hover {
+    color: white; background: var(--dark); transform: translateY(-1px);
+  }
+  .quiz-link-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: #d9f0dc;
+    box-shadow: 0 0 0 4px rgba(217,240,220,0.18);
+  }
+  .mobile-label { display: none; }
+
+  /* ════════════════════════════════════════════
      §1  HERO  — dark mountain image
   ════════════════════════════════════════════ */
   #hero {
     min-height: 100svh;
     display: flex; align-items: center; justify-content: center;
-    padding: 90px 0 100px; text-align: center; overflow: hidden;
+    padding: 132px 0 100px; text-align: center; overflow: hidden;
     background-color: var(--dark);
     background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80');
     background-size: cover; background-position: center 40%;
@@ -161,9 +259,9 @@
   #hero .container { position: relative; z-index: 1; }
 
   .hero-logo {
-    height: 56px; width: auto; opacity: 0.9;
+    width: 96px; height: 96px; opacity: 0.95;
     margin: 0 auto 48px; display: block;
-    filter: brightness(0) invert(1) sepia(1) saturate(1.5) hue-rotate(90deg) brightness(1.3);
+    border-radius: 50%;
   }
   .hero-title {
     font-family: 'Playfair Display', Georgia, serif;
@@ -193,11 +291,39 @@
     font-style: italic; font-size: clamp(1.2rem, 2.8vw, 1.5rem);
     color: #f0ece4; text-align: center; margin: 36px 0; line-height: 1.55;
   }
+  .hero-actions {
+    display: flex; align-items: stretch; justify-content: center; gap: 12px;
+    margin-top: 44px;
+  }
+  .hero-cta {
+    min-height: 62px; display: inline-flex; align-items: center;
+    justify-content: center; text-decoration: none; border-radius: 14px;
+    transition: transform .25s, background .25s, border-color .25s, box-shadow .25s;
+  }
+  .hero-cta.primary {
+    min-width: 270px; flex-direction: column; padding: 12px 24px;
+    color: white; background: var(--accent);
+    box-shadow: 0 12px 35px rgba(77,122,84,0.35);
+  }
+  .hero-cta.primary strong {
+    font-size: 0.83rem; letter-spacing: 0.11em; text-transform: uppercase;
+  }
+  .hero-cta.primary small {
+    margin-top: 3px; color: rgba(255,255,255,0.76); font-size: 0.78rem;
+  }
+  .hero-cta.secondary {
+    padding: 12px 22px; color: rgba(240,236,228,0.82);
+    border: 1px solid rgba(240,236,228,0.22);
+    background: rgba(255,255,255,0.05); font-size: 0.78rem; font-weight: 500;
+  }
+  .hero-cta:hover { transform: translateY(-3px); }
+  .hero-cta.primary:hover { background: var(--accent-dk); box-shadow: 0 16px 42px rgba(77,122,84,0.45); }
+  .hero-cta.secondary:hover { border-color: rgba(240,236,228,0.46); background: rgba(255,255,255,0.1); }
   .scroll-hint {
     display: flex; flex-direction: column; align-items: center; gap: 9px;
     margin-top: 68px; color: rgba(198,180,138,0.8);
   }
-  .scroll-hint span { font-size: 9px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; }
+  .scroll-hint span { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; }
   .scroll-bar {
     width: 1px; height: 40px;
     background: linear-gradient(to bottom, rgba(198,180,138,0.8), transparent);
@@ -220,20 +346,9 @@
     color: rgba(107,159,113,0.065);
   }
 
-  .pull-quote {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic; font-size: clamp(1.5rem, 3.3vw, 2rem);
-    color: var(--ink); line-height: 1.5; text-align: center;
-    padding: 52px 0; margin: 44px 0; position: relative;
-  }
-  .pull-quote::before, .pull-quote::after {
-    content: ''; display: block; width: 28px; height: 1.5px;
-    background: var(--accent); margin: 0 auto;
-  }
-  .pull-quote::before { margin-bottom: 28px; }
-  .pull-quote::after  { margin-top: 28px; }
-
-  /* Wisdom reveal button */
+  /* Progressive wisdom chain */
+  .wisdom-chain { margin-top: 28px; }
+  .wisdom-step { position: relative; }
   .wisdom-trigger {
     display: inline-flex; align-items: center; gap: 8px;
     margin-top: 16px; cursor: pointer;
@@ -251,15 +366,16 @@
   }
   .wisdom-trigger.open .wt-icon { background: var(--accent); color: white; }
 
-  .wisdom-quote {
-    max-height: 0; overflow: hidden;
+  .wisdom-panel {
+    display: grid; grid-template-rows: 0fr;
     opacity: 0; transform: translateY(8px);
-    transition: max-height .6s ease, opacity .5s ease, transform .5s ease;
+    transition: grid-template-rows .6s cubic-bezier(.16,1,.3,1), opacity .45s ease, transform .5s ease;
   }
-  .wisdom-quote.open {
-    max-height: 120px; opacity: 1; transform: none;
+  .wisdom-panel.open {
+    grid-template-rows: 1fr; opacity: 1; transform: none;
   }
-  .wisdom-quote blockquote {
+  .wisdom-panel-inner { min-height: 0; overflow: hidden; }
+  .wisdom-panel blockquote {
     margin-top: 20px; padding: 20px 24px;
     background: rgba(107,159,113,0.06);
     border-left: 2px solid var(--accent); border-radius: 0 8px 8px 0;
@@ -267,23 +383,65 @@
     font-style: italic; font-size: 0.95rem; color: var(--ink);
     line-height: 1.65;
   }
-  .wisdom-quote blockquote cite {
-    display: block; font-size: 0.75rem; font-style: normal;
+  .wisdom-panel blockquote cite {
+    display: block; font-size: 0.82rem; font-style: normal;
     color: var(--muted); margin-top: 8px; font-family: 'Inter', sans-serif;
     letter-spacing: 0.08em;
   }
+  .wisdom-panel-inner > .wisdom-step { margin: 16px 0 0 24px; }
+  .wisdom-panel-inner > .wisdom-step > .wisdom-trigger { margin-top: 0; }
+  .wisdom-panel-inner > .wisdom-step:last-child { padding-bottom: 4px; }
 
   /* ════════════════════════════════════════════
      §3  SELF SAFARI — interactive quiz
   ════════════════════════════════════════════ */
-  #selfsafari { background: linear-gradient(160deg, #e0ebe1 0%, var(--sage-bg) 100%); }
+  #selfsafari {
+    background: linear-gradient(145deg, #edf5ed 0%, #d6e8d8 52%, #c6ddc9 100%);
+    overflow: hidden;
+  }
+  #selfsafari::after {
+    content: ''; position: absolute; width: 720px; height: 720px;
+    right: -380px; top: -260px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(255,255,255,0.68) 0%, rgba(168,201,172,0.12) 52%, transparent 70%);
+  }
+  #selfsafari .container { position: relative; z-index: 1; }
+
+  .quiz-heading {
+    display: grid; grid-template-columns: minmax(0,1fr) 220px;
+    align-items: end; gap: 48px;
+  }
+  .quiz-heading .section-title { margin-bottom: 26px; }
+  .quiz-heading-copy > p { margin-bottom: 0; }
+  .quiz-meta {
+    padding: 22px; border-radius: 16px;
+    background: rgba(255,255,255,0.62);
+    border: 1px solid rgba(255,255,255,0.82);
+    box-shadow: 0 12px 35px rgba(45,78,51,0.08);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  .quiz-meta strong {
+    display: block; margin-bottom: 6px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.35rem; font-weight: 500; color: var(--ink);
+  }
+  .quiz-meta > span { display: block; color: var(--muted); font-size: 0.78rem; line-height: 1.55; }
+  .quiz-meta-list {
+    display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px;
+  }
+  .quiz-meta-list span {
+    padding: 5px 9px; border-radius: 999px;
+    background: rgba(107,159,113,0.1); color: var(--accent-dk);
+    font-size: 0.74rem; font-weight: 600; letter-spacing: 0.04em;
+  }
 
   .quiz-wrap {
     background: white;
     border-radius: 20px;
     border: 1px solid rgba(107,159,113,0.15);
     box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.08), 0 40px 80px rgba(0,0,0,0.04);
-    overflow: hidden; margin-top: 52px; position: relative;
+    overflow: hidden; margin-top: 38px; position: relative;
+    border-color: rgba(77,122,84,0.22);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 18px 55px rgba(32,65,38,0.15), 0 50px 100px rgba(32,65,38,0.08);
   }
 
   /* image header strip */
@@ -299,11 +457,17 @@
     background: linear-gradient(to bottom, rgba(13,22,16,0.3), rgba(13,22,16,0.7));
   }
   .quiz-img-label {
-    position: absolute; bottom: 22px; left: 50%;
-    transform: translateX(-50%);
-    font-size: 10px; font-weight: 600; letter-spacing: 0.22em;
-    text-transform: uppercase; color: rgba(255,255,255,0.85);
-    z-index: 1; white-space: nowrap;
+    position: absolute; bottom: 26px; left: 30px;
+    z-index: 1; color: white;
+  }
+  .quiz-img-label span {
+    display: block; margin-bottom: 4px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent-lt);
+  }
+  .quiz-img-label strong {
+    display: block; font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.35rem,3.5vw,1.8rem); font-weight: 500; line-height: 1.2;
   }
 
   .quiz-inner { padding: 48px 52px 56px; }
@@ -325,7 +489,7 @@
   @keyframes qfade { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
 
   .q-counter {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.17em;
     text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
   }
   .q-text {
@@ -352,7 +516,7 @@
 
   .qr-bar-wrap { margin-bottom: 32px; }
   .qr-label {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.17em;
     text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
   }
   .qr-track {
@@ -369,14 +533,90 @@
     color: var(--ink); margin-bottom: 16px; line-height: 1.3;
   }
   .qr-text { font-size: 1rem; color: var(--muted); margin-bottom: 28px; max-width: 100%; }
-  .qr-again {
-    border: 1.5px solid var(--accent); color: var(--accent);
-    background: none; border-radius: 40px; padding: 10px 26px;
-    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; cursor: pointer;
-    font-family: 'Inter', sans-serif; transition: background .25s, color .25s;
+  .qr-next {
+    margin: 32px 0 22px; padding: 24px;
+    border-radius: 16px; background: linear-gradient(135deg, #edf5ee, #f8f6ee);
+    border: 1px solid rgba(107,159,113,0.22);
   }
-  .qr-again:hover { background: var(--accent); color: white; }
+  .qr-next-label {
+    display: block; margin-bottom: 8px;
+    color: var(--accent-dk); font-size: 0.76rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .qr-next h3 {
+    margin-bottom: 10px; color: var(--ink);
+    font-size: 1.35rem; font-weight: 500;
+  }
+  .qr-next p { margin: 0; max-width: 100%; color: var(--muted); font-size: 0.96rem; line-height: 1.65; }
+  .guide-form {
+    margin: 24px 0 18px; padding: 24px;
+    border-radius: 16px; background: var(--dark);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 18px 48px rgba(19,26,22,0.16);
+  }
+  .guide-form label {
+    display: block; margin-bottom: 7px; color: #f3efe6;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.28rem; font-weight: 500;
+  }
+  .guide-form-copy {
+    margin: 0 0 17px; color: rgba(243,239,230,0.62);
+    font-size: 0.9rem; line-height: 1.55;
+  }
+  .guide-form-row { display: flex; align-items: stretch; gap: 9px; }
+  .guide-email {
+    min-width: 0; flex: 1; height: 48px; padding: 0 15px;
+    border: 1px solid rgba(255,255,255,0.16); border-radius: 10px;
+    background: rgba(255,255,255,0.09); color: white;
+    font: inherit; font-size: 0.92rem; outline: none;
+    transition: border-color .2s, background .2s, box-shadow .2s;
+  }
+  .guide-email::placeholder { color: rgba(255,255,255,0.4); }
+  .guide-email:focus {
+    border-color: var(--accent-lt); background: rgba(255,255,255,0.13);
+    box-shadow: 0 0 0 4px rgba(168,201,172,0.12);
+  }
+  .guide-submit {
+    height: 48px; padding: 0 19px; border: 0; border-radius: 10px;
+    color: white; background: var(--accent); cursor: pointer;
+    font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.06em; white-space: nowrap;
+    transition: transform .2s, background .2s, opacity .2s;
+  }
+  .guide-submit:hover { background: var(--accent-dk); transform: translateY(-1px); }
+  .guide-submit:disabled { cursor: wait; opacity: 0.6; transform: none; }
+  .guide-privacy {
+    margin: 12px 0 0; color: rgba(243,239,230,0.43);
+    font-size: 0.74rem; line-height: 1.45;
+  }
+  .guide-status { min-height: 1.4em; margin: 9px 0 0; color: var(--accent-lt); font-size: 0.82rem; }
+  .guide-status.error { color: #efc7b8; }
+  .guide-honeypot {
+    position: absolute !important; width: 1px !important; height: 1px !important;
+    overflow: hidden !important; clip: rect(0 0 0 0) !important;
+    white-space: nowrap !important; clip-path: inset(50%) !important;
+  }
+  .qr-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .qr-continue {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 12px 22px; border-radius: 999px;
+    color: white; background: var(--accent-dk); text-decoration: none;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em;
+    transition: transform .2s, background .2s, box-shadow .2s;
+  }
+  .qr-continue:hover {
+    transform: translateY(-2px); background: var(--dark);
+    box-shadow: 0 8px 24px rgba(77,122,84,0.22);
+  }
+  .qr-continue.secondary {
+    color: var(--accent-lt);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(168,201,172,0.25);
+  }
+  .qr-continue.secondary:hover {
+    color: white;
+    background: rgba(255,255,255,0.14);
+  }
 
   /* ════════════════════════════════════════════
      §4  LANDSCAPE — expandable flip cards
@@ -433,12 +673,12 @@
     border-top: 0px solid var(--divider);
   }
   .dim-card.open .dim-reveal {
-    max-height: 160px; opacity: 1; transform: none;
+    max-height: 260px; opacity: 1; transform: none;
     border-top: 1px solid rgba(107,159,113,0.15);
     margin-top: 16px; padding-top: 16px;
   }
   .dim-reveal .ask-label {
-    font-size: 9.5px; font-weight: 600; letter-spacing: 0.2em;
+    font-size: 11.5px; font-weight: 600; letter-spacing: 0.17em;
     text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 8px;
   }
   .dim-reveal .ask-q {
@@ -447,7 +687,7 @@
     line-height: 1.6; margin: 0; max-width: 100%;
   }
   .dim-close {
-    display: none; font-size: 10px; color: var(--muted); margin-top: 14px;
+    display: none; font-size: 12px; color: var(--muted); margin-top: 14px;
     cursor: pointer; letter-spacing: 0.05em;
   }
   .dim-card.open .dim-close { display: block; }
@@ -472,7 +712,7 @@
 
   .sig-num {
     font-family: 'Playfair Display', Georgia, serif; font-style: italic;
-    font-size: 0.68rem; color: var(--accent); min-width: 14px; flex-shrink: 0;
+    font-size: 0.78rem; color: var(--accent); min-width: 16px; flex-shrink: 0;
     transition: transform .3s;
   }
   #misalignment .sig-num { color: var(--sand); }
@@ -577,14 +817,73 @@
     border-radius: 14px; padding: 32px 26px; backdrop-filter: blur(4px);
   }
   .tcol .lbl {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.22em;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.18em;
     text-transform: uppercase; color: var(--accent-lt);
     display: block; margin-bottom: 14px;
   }
-  .tcol p { font-size: 0.9rem; color: rgba(232,228,218,0.62); margin: 0; max-width: 100%; }
+  .tcol p { font-size: 0.96rem; color: rgba(232,228,218,0.68); margin: 0; max-width: 100%; }
 
   /* ════════════════════════════════════════════
-     §8  JOURNEY  — expandable topics
+     §8  VIDEOS — latest YouTube uploads
+  ════════════════════════════════════════════ */
+  #videos {
+    background: linear-gradient(150deg, #f7f3e9 0%, #e9efe6 100%);
+    overflow: hidden;
+  }
+  #videos::before {
+    content: ''; position: absolute; width: 520px; height: 520px;
+    left: -310px; bottom: -300px; border-radius: 50%; pointer-events: none;
+    border: 1px solid rgba(107,159,113,0.18);
+    box-shadow: 0 0 0 70px rgba(107,159,113,0.035), 0 0 0 140px rgba(107,159,113,0.025);
+  }
+  #videos .container { position: relative; z-index: 1; max-width: 940px; }
+  .video-heading {
+    display: grid; grid-template-columns: minmax(0,1fr) auto;
+    align-items: end; gap: 40px; margin-bottom: 42px;
+  }
+  .video-heading .section-title { margin-bottom: 22px; }
+  .video-heading p { margin: 0; }
+  .channel-link {
+    display: inline-flex; align-items: center; gap: 9px; white-space: nowrap;
+    padding: 12px 18px; border: 1px solid rgba(107,159,113,0.34);
+    border-radius: 999px; color: var(--accent-dk); text-decoration: none;
+    background: rgba(255,255,255,0.55); font-size: 0.82rem; font-weight: 600;
+    transition: color .2s, background .2s, transform .2s, box-shadow .2s;
+  }
+  .channel-link:hover {
+    color: white; background: var(--accent-dk); transform: translateY(-2px);
+    box-shadow: 0 9px 28px rgba(77,122,84,0.2);
+  }
+  .channel-link svg { width: 17px; height: 17px; flex-shrink: 0; }
+  .video-shell {
+    padding: 12px; border-radius: 24px;
+    background: linear-gradient(145deg, #18221b, #0f1511);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 28px 80px rgba(27,44,31,0.24);
+  }
+  .video-frame {
+    position: relative; overflow: hidden; aspect-ratio: 16 / 9;
+    border-radius: 15px; background: #0c120e;
+  }
+  .video-frame iframe {
+    position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+  }
+  .video-note {
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+    margin-top: 18px; padding: 0 8px 3px;
+    color: rgba(255,255,255,0.58); font-size: 0.82rem;
+  }
+  .video-note a { color: var(--accent-lt); text-decoration: none; font-weight: 600; }
+  .video-note a:hover { color: white; }
+  .video-note strong { color: rgba(255,255,255,0.88); font-weight: 500; }
+  .video-live-dot {
+    display: inline-block; width: 7px; height: 7px; margin-right: 7px;
+    border-radius: 50%; background: var(--accent-lt);
+    box-shadow: 0 0 0 5px rgba(168,201,172,0.1);
+  }
+
+  /* ════════════════════════════════════════════
+     §9  JOURNEY  — expandable topics
   ════════════════════════════════════════════ */
   #journey { background: var(--close-bg); padding-bottom: 180px; }
 
@@ -631,7 +930,7 @@
     max-height: 0; overflow: hidden;
     transition: max-height .55s cubic-bezier(.16,1,.3,1);
   }
-  .journey-item.open .ji-body { max-height: 120px; }
+  .journey-item.open .ji-body { max-height: 240px; }
   .ji-body p {
     font-size: 0.9rem; color: var(--muted); padding: 0 0 20px;
     max-width: 100%; line-height: 1.75; margin: 0;
@@ -675,11 +974,73 @@
   }
   .finale-dot.on { opacity: 1; }
   #journey .finale-dot { background: var(--sand); }
+  .journey-cta a {
+    color: var(--sand-lt);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(198,180,138,0.45);
+  }
+  .journey-cta a:hover { color: white; border-bottom-color: white; }
 
   @media (max-width: 480px) {
     section { padding: 88px 0; }
-    #hero { padding: 76px 0 88px; min-height: auto; }
+    #hero { padding: 112px 0 88px; min-height: auto; }
+    .container { padding: 0 22px; }
+    .hero-logo { width: 82px; height: 82px; margin-bottom: 36px; }
+    .hero-title { font-size: clamp(3.5rem, 20vw, 4.4rem); }
+    .hero-sub { font-size: 1.08rem; margin-bottom: 40px; }
+    .hero-body p { font-size: 1rem; }
+    .hero-q { font-size: 1.25rem; margin: 30px 0; }
     .quiz-inner { padding: 28px 20px 36px; }
+    .q-opt { padding: 16px; font-size: 1rem; line-height: 1.45; }
+    .guide-form { padding: 20px; }
+    .guide-form-row { flex-direction: column; }
+    .guide-submit { width: 100%; }
+    .qr-actions { align-items: stretch; flex-direction: column; }
+    .qr-continue { width: 100%; }
+  }
+
+  @media (max-width: 680px) {
+    .site-header {
+      top: 10px; width: calc(100% - 20px); height: 56px;
+      padding: 7px 8px 7px 12px; border-radius: 15px;
+      background: rgba(250,248,243,0.68);
+      backdrop-filter: blur(22px) saturate(145%);
+      -webkit-backdrop-filter: blur(22px) saturate(145%);
+    }
+    .site-brand { font-size: 0.95rem; gap: 8px; }
+    .site-brand img { width: 30px; height: 30px; }
+    .site-brand span { display: none; }
+    .site-links { gap: 6px; }
+    .site-links .site-idea-link { display: none; }
+    .site-links > a { padding: 9px 11px; font-size: 0.68rem; letter-spacing: 0.07em; }
+    .site-links .site-learn-link { display: inline-flex; background: rgba(255,255,255,0.44); }
+    .site-links .site-quiz-link { padding: 9px 11px; font-size: 0.68rem; }
+    .site-links .site-quiz-link .quiz-link-dot { display: none; }
+    .site-links .desktop-label { display: none; }
+    .site-links .mobile-label { display: inline; }
+    .hero-actions { flex-direction: column; }
+    .hero-cta.primary { min-width: 0; width: 100%; }
+    .hero-cta.secondary { width: 100%; }
+    .quiz-heading { grid-template-columns: 1fr; gap: 24px; }
+    .quiz-meta { padding: 18px 20px; }
+    .quiz-meta-list { margin-top: 12px; }
+    .quiz-img-strip { height: 180px; }
+    .quiz-img-label { left: 22px; bottom: 22px; }
+    .wisdom-panel-inner > .wisdom-step { margin-left: 0; }
+    .video-heading { grid-template-columns: 1fr; align-items: start; gap: 24px; }
+    .channel-link { justify-self: start; }
+    .video-shell { padding: 7px; border-radius: 17px; }
+    .video-frame { border-radius: 11px; }
+    .video-note { align-items: flex-start; flex-direction: column; gap: 6px; padding: 0 5px 4px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   /* ══════════════════════════════════════════════
@@ -883,14 +1244,10 @@
     z-index: 1;
   }
 
-  /* ── Begin Again gentle pulse ── */
-  .qr-again { animation: rAgain 4s ease-in-out 1.5s infinite; }
-  @keyframes rAgain { 0%,100%{box-shadow:0 0 0 0 rgba(107,159,113,0)} 50%{box-shadow:0 0 0 7px rgba(107,159,113,.1)} }
-
   /* ── Interactive badge ── */
   .int-badge {
     display: inline-flex; align-items: center; gap: 6px;
-    font-family: 'Inter', sans-serif; font-size: 9.5px;
+    font-family: 'Inter', sans-serif; font-size: 11px;
     font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--accent); background: rgba(107,159,113,0.08);
     border: 1px solid rgba(107,159,113,0.2);
@@ -920,6 +1277,21 @@
 
   <div id="progress-bar"></div>
 
+  <header class="site-header">
+    <a class="site-brand" href="#hero" aria-label="SoulSafari home">
+      <img src="assets/soulsafari-logo.png" alt="" aria-hidden="true" />
+      <span>SoulSafari</span>
+    </a>
+    <nav class="site-links" aria-label="Primary navigation">
+      <a class="site-idea-link" href="#idea">The idea</a>
+      <a class="site-learn-link" href="learn.html"><span class="desktop-label">Learn Safari</span><span class="mobile-label">Learn</span></a>
+      <a class="site-quiz-link" href="#selfsafari">
+        <span class="quiz-link-dot" aria-hidden="true"></span>
+        <span class="desktop-label">Take the 2-minute quiz</span><span class="mobile-label">Quiz</span>
+      </a>
+    </nav>
+  </header>
+
   <nav id="section-dots" aria-label="Section navigation">
     <div class="sdot active" data-target="hero"         title="Home"></div>
     <div class="sdot"        data-target="idea"         title="The Idea"></div>
@@ -928,6 +1300,7 @@
     <div class="sdot"        data-target="alignment"    title="Alignment"></div>
     <div class="sdot"        data-target="misalignment" title="Misalignment"></div>
     <div class="sdot"        data-target="reflection"   title="Reflection"></div>
+    <div class="sdot"        data-target="videos"       title="Videos"></div>
     <div class="sdot"        data-target="journey"      title="Journey"></div>
   </nav>
 
@@ -937,7 +1310,7 @@
   ════════════════════════ -->
   <section id="hero">
     <div class="container">
-      <img src="assets/ss_logo.png" alt="SoulSafari" class="hero-logo r" />
+      <img src="assets/soulsafari-logo.png" alt="SoulSafari" class="hero-logo r" />
       <h1 class="hero-title r d1">SoulSafari</h1>
       <p class="hero-sub r d2">A quiet exploration of alignment, clarity,<br />and the deeper direction of your life.</p>
       <div class="hero-rule r d3"></div>
@@ -945,6 +1318,13 @@
         <p>Life moves quickly. Between responsibilities, expectations, goals, and constant information, many people move forward without ever pausing to ask a deeper question.</p>
         <em class="hero-q">Does the life I am building actually feel right?</em>
         <p>SoulSafari is a space for reflection. A place to step back, observe your inner landscape, and rediscover direction.</p>
+      </div>
+      <div class="hero-actions r d4">
+        <a class="hero-cta primary" href="#selfsafari">
+          <strong>Take the Self Safari</strong>
+          <small>5 questions · 2 minutes · instant reflection</small>
+        </a>
+        <a class="hero-cta secondary" href="#idea">Explore the idea ↓</a>
       </div>
       <div class="scroll-hint r d4" aria-hidden="true">
         <span>Explore</span>
@@ -967,32 +1347,66 @@
       <p class="r">Most people imagine life as a straight path toward success. But real life rarely unfolds that way.</p>
       <p class="r d1">People experience periods of growth, confusion, reinvention, and rediscovery. Sometimes what once felt meaningful begins to feel empty. Sometimes a quiet inner signal asks us to change direction.</p>
 
-      <button class="wisdom-trigger r d2" onclick="toggleWisdom('w1',this)">
-        <span class="wt-label">A perspective on noticing</span>
-        <span class="wt-icon">+</span>
-      </button>
-      <div class="wisdom-quote" id="w1">
-        <blockquote>
-          "The curious paradox is that when I accept myself just as I am, then I can change."
-          <cite>— Carl Rogers</cite>
-        </blockquote>
-      </div>
+      <div class="wisdom-chain r d2">
+        <div class="wisdom-step">
+          <button class="wisdom-trigger" onclick="toggleWisdom('w1',this)" aria-expanded="false" aria-controls="w1">
+            <span class="wt-label">A perspective on noticing</span>
+            <span class="wt-icon">+</span>
+          </button>
+          <div class="wisdom-panel" id="w1">
+            <div class="wisdom-panel-inner">
+              <blockquote>
+                "The curious paradox is that when I accept myself just as I am, then I can change."
+                <cite>— Carl Rogers</cite>
+              </blockquote>
 
-      <blockquote class="pull-quote r d3">
-        Reflection is not about instantly fixing life.<br />It is simply about noticing.
-      </blockquote>
+              <div class="wisdom-step">
+                <button class="wisdom-trigger" onclick="toggleWisdom('w2',this)" aria-expanded="false" aria-controls="w2">
+                  <span class="wt-label">What attention begins to reveal</span>
+                  <span class="wt-icon">+</span>
+                </button>
+                <div class="wisdom-panel" id="w2">
+                  <div class="wisdom-panel-inner">
+                    <blockquote>
+                      "Notice what quietly gives you energy — and what repeatedly leaves you depleted."
+                      <cite>— SoulSafari</cite>
+                    </blockquote>
 
-      <p class="r d4">And noticing is where clarity begins.</p>
+                    <div class="wisdom-step">
+                      <button class="wisdom-trigger" onclick="toggleWisdom('w3',this)" aria-expanded="false" aria-controls="w3">
+                        <span class="wt-label">The question beneath the noise</span>
+                        <span class="wt-icon">+</span>
+                      </button>
+                      <div class="wisdom-panel" id="w3">
+                        <div class="wisdom-panel-inner">
+                          <blockquote>
+                            "The question you keep postponing is often the one already pointing toward change."
+                            <cite>— SoulSafari</cite>
+                          </blockquote>
 
-      <button class="wisdom-trigger r d5" onclick="toggleWisdom('w2',this)">
-        <span class="wt-label">On the power of stillness</span>
-        <span class="wt-icon">+</span>
-      </button>
-      <div class="wisdom-quote" id="w2">
-        <blockquote>
-          "In the midst of movement and chaos, keep stillness inside of you."
-          <cite>— Deepak Chopra</cite>
-        </blockquote>
+                          <div class="wisdom-step">
+                            <button class="wisdom-trigger" onclick="toggleWisdom('w4',this)" aria-expanded="false" aria-controls="w4">
+                              <span class="wt-label">Where clarity begins</span>
+                              <span class="wt-icon">+</span>
+                            </button>
+                            <div class="wisdom-panel" id="w4">
+                              <div class="wisdom-panel-inner">
+                                <blockquote>
+                                  "Clarity rarely arrives as certainty. More often, it begins as one honest thing you can no longer unsee."
+                                  <cite>— SoulSafari</cite>
+                                </blockquote>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -1005,14 +1419,28 @@
   <section id="selfsafari">
     <div class="container">
 
-      <span class="eyebrow r">The Practice</span>
-      <h2 class="section-title r">Self Safari</h2>
-
-      <p class="r">A short reflection designed to help you notice how aligned your life currently feels. Five honest questions. No right answers.</p>
+      <div class="quiz-heading">
+        <div class="quiz-heading-copy">
+          <span class="eyebrow r">Featured Experience</span>
+          <h2 class="section-title r">Your Self Safari</h2>
+          <p class="r">A short reflection designed to help you notice how aligned your life currently feels. Five honest questions. No right answers.</p>
+        </div>
+        <aside class="quiz-meta r d1" aria-label="Quiz details">
+          <strong>Two quiet minutes.</strong>
+          <span>A private check-in with where you are right now.</span>
+          <div class="quiz-meta-list" aria-hidden="true">
+            <span>5 questions</span>
+            <span>No sign-up</span>
+          </div>
+        </aside>
+      </div>
 
       <div class="quiz-wrap r d2">
         <div class="quiz-img-strip">
-          <span class="quiz-img-label">Self Safari · A Reflection</span>
+          <div class="quiz-img-label">
+            <span>Begin here</span>
+            <strong>Check in with yourself</strong>
+          </div>
         </div>
         <div class="quiz-inner">
 
@@ -1081,14 +1509,36 @@
           </div>
 
           <!-- Result -->
-          <div class="quiz-result" id="quizResult">
+          <div class="quiz-result" id="quizResult" role="status" aria-live="polite" tabindex="-1">
             <div class="qr-bar-wrap">
               <p class="qr-label" id="qrLabel">Your alignment signal</p>
               <div class="qr-track"><div class="qr-fill" id="qrFill"></div></div>
             </div>
             <p class="qr-title" id="qrTitle"></p>
             <p class="qr-text"  id="qrText"></p>
-            <button class="qr-again" onclick="QUIZ.restart()">Begin again</button>
+            <div class="qr-next">
+              <span class="qr-next-label">What happens next</span>
+              <h3>Follow the signal into your landscape.</h3>
+              <p>Your result is a starting point, not a verdict. Next, explore the six dimensions that shape how aligned a life feels.</p>
+            </div>
+            <form class="guide-form" id="guideForm" onsubmit="GUIDE.send(event)" novalidate>
+              <label for="guideEmail">Send the full guide to your inbox</label>
+              <p class="guide-form-copy">Seven thoughtful pages to help you sit with your result and decide what comes next.</p>
+              <div class="guide-form-row">
+                <input class="guide-email" id="guideEmail" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="guidePrivacy guideStatus" />
+                <button class="guide-submit" type="submit">Send my guide</button>
+              </div>
+              <div class="guide-honeypot" aria-hidden="true">
+                <label for="guideWebsite">Leave this field empty</label>
+                <input id="guideWebsite" name="website" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+              <p class="guide-privacy" id="guidePrivacy">One useful email. No list, no noise.</p>
+              <p class="guide-status" id="guideStatus" role="status" aria-live="polite"></p>
+            </form>
+            <div class="qr-actions">
+              <a class="qr-continue" href="#landscape">Explore your life landscape →</a>
+              <a class="qr-continue secondary" href="learn.html">Continue with Learn Safari</a>
+            </div>
           </div>
 
         </div><!-- /quiz-inner -->
@@ -1321,7 +1771,43 @@
 
 
   <!-- ════════════════════════
-       §8  JOURNEY
+       §8  VIDEOS
+  ════════════════════════ -->
+  <section id="videos">
+    <div class="container">
+      <div class="video-heading">
+        <div>
+          <span class="eyebrow r">Watch &amp; Reflect</span>
+          <h2 class="section-title r">Begin the<br />Learn Safari</h2>
+          <p class="r d1">A quiet sequence of video reflections for the mind, the heart, and the questions that keep returning.</p>
+        </div>
+        <a class="channel-link r d2" href="learn.html">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg>
+          Begin the path
+        </a>
+      </div>
+
+      <div class="video-shell r d2">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/videoseries?list=UUzN0bIXogtD-XM8O9ShSvMQ&amp;rel=0"
+            title="SoulSafari reflection video"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+        <div class="video-note">
+          <span><span class="video-live-dot" aria-hidden="true"></span><strong>Learn Safari</strong> · Continue through the lessons at your own pace.</span>
+          <span><a href="learn.html">Open Learn Safari →</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════
+       §9  JOURNEY
   ════════════════════════ -->
   <section id="journey">
     <div class="container">
@@ -1377,6 +1863,7 @@
       </ul>
 
       <p class="r d3">Each journey begins the same way.</p>
+      <p class="journey-cta r d3"><a href="learn.html">Continue into the Learn Safari →</a></p>
 
       <div class="finale">
         <div class="finale-words" id="finaleWords">
@@ -1417,7 +1904,7 @@
   /* ═══════════════════════════════════════════
      SCROLL PROGRESS BAR + SECTION DOTS
   ═══════════════════════════════════════════ */
-  const sections = ['hero','idea','selfsafari','landscape','alignment','misalignment','reflection','journey'];
+  const sections = ['hero','idea','selfsafari','landscape','alignment','misalignment','reflection','videos','journey'];
   const dots = document.querySelectorAll('.sdot');
   const bar  = document.getElementById('progress-bar');
 
@@ -1444,6 +1931,14 @@
     const el = document.getElementById(id);
     const open = el.classList.toggle('open');
     btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    if (!open) {
+      el.querySelectorAll('.wisdom-panel.open').forEach((panel) => panel.classList.remove('open'));
+      el.querySelectorAll('.wisdom-trigger.open').forEach((trigger) => {
+        trigger.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    }
   }
 
   /* ═══════════════════════════════════════════
@@ -1488,19 +1983,66 @@
     showResult() {
       const score = this.answers.reduce((a, b) => a + b, 0);
       const r = this.results.find((x) => score >= x.min && score <= x.max) || this.results[1];
+      const result = document.getElementById('quizResult');
       document.getElementById('qrTitle').textContent = r.title;
       document.getElementById('qrText').textContent  = r.text;
-      document.getElementById('quizResult').classList.add('active');
+      result.classList.add('active');
       document.getElementById('qProgBar').style.width = '100%';
+      result.focus({ preventScroll: true });
       setTimeout(() => { document.getElementById('qrFill').style.width = r.pct + '%'; }, 100);
-    },
-    restart() {
-      this.answers = []; this.current = 0;
-      document.getElementById('quizResult').classList.remove('active');
-      document.getElementById('qrFill').style.width = '0%';
-      document.getElementById('qProgBar').style.width = '0%';
-      document.querySelectorAll('.quiz-step').forEach((s) => s.classList.remove('active'));
-      document.getElementById('qs0').classList.add('active');
+    }
+  };
+
+  /* ═══════════════════════════════════════════
+     GUIDE DELIVERY
+  ═══════════════════════════════════════════ */
+  const GUIDE = {
+    async send(event) {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const email = form.elements.email;
+      const button = form.querySelector('.guide-submit');
+      const status = document.getElementById('guideStatus');
+      const originalLabel = button.textContent;
+
+      status.classList.remove('error');
+      status.textContent = '';
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (window.location.protocol === 'file:') {
+        status.classList.add('error');
+        status.textContent = 'Email delivery is available on the live site.';
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = 'Sending…';
+
+      try {
+        const response = await fetch('/api/send-guide', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: email.value,
+            website: form.elements.website.value
+          })
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.message || 'The guide could not be sent.');
+
+        form.reset();
+        button.textContent = 'Sent';
+        status.textContent = 'It’s on its way. Check your inbox.';
+      } catch (error) {
+        status.classList.add('error');
+        status.textContent = error.message || 'Something went wrong. Please try again.';
+        button.disabled = false;
+        button.textContent = originalLabel;
+      }
     }
   };
 
@@ -1607,6 +2149,7 @@
     { id: 'alignment',    text: 'Interactive · Tap to recognise'   },
     { id: 'misalignment', text: 'Interactive · Tap to recognise'   },
     { id: 'reflection',   text: 'Interactive · Click to explore'   },
+    { id: 'videos',       text: 'Latest · Watch & reflect'          },
     { id: 'journey',      text: 'Interactive · Click to expand'    },
   ];
   badgeSections.forEach(({ id, text }) => {

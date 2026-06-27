@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn Safari — SoulSafari</title>
+  <meta name="description" content="A guided SoulSafari video journey through the mind, fear, worth, desire, forgiveness, action, purpose, and wonder." />
+  <meta name="theme-color" content="#131a16" />
+  <link rel="canonical" href="https://soulsafari.in/learn.html" />
+  <link rel="icon" type="image/png" href="assets/soulsafari-logo.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SoulSafari" />
+  <meta property="og:locale" content="en_AU" />
+  <meta property="og:url" content="https://soulsafari.in/learn.html" />
+  <meta property="og:title" content="Learn Safari — SoulSafari" />
+  <meta property="og:description" content="A guided video journey for noticing what is shaping your life." />
+  <meta property="og:image" content="https://soulsafari.in/assets/soulsafari-og.png" />
+  <meta property="og:image:secure_url" content="https://soulsafari.in/assets/soulsafari-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="SoulSafari — a quiet exploration of alignment, clarity, and direction" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Learn Safari — SoulSafari" />
+  <meta name="twitter:description" content="A guided video journey for noticing what is shaping your life." />
+  <meta name="twitter:image" content="https://soulsafari.in/assets/soulsafari-og.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #faf8f3;
+    --cream-d: #f0ead8;
+    --ink: #1a1a18;
+    --muted: #70706a;
+    --accent: #6b9f71;
+    --accent-dk: #4d7a54;
+    --accent-lt: #a8c9ac;
+    --sand: #c6b48a;
+    --sand-lt: #e2d8c4;
+    --dark: #131a16;
+    --panel: rgba(255,255,255,0.72);
+    --line: rgba(107,159,113,0.18);
+  }
+
+  html, body { min-height: 100%; }
+
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(168,201,172,0.24), transparent 34%),
+      radial-gradient(circle at 88% 10%, rgba(198,180,138,0.20), transparent 32%),
+      var(--cream);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 20;
+  }
+
+  a { color: inherit; }
+  button { font: inherit; }
+
+  .topbar {
+    position: fixed;
+    top: 16px; left: 50%;
+    transform: translateX(-50%);
+    width: min(calc(100% - 32px), 1180px);
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 8px 10px 8px 16px;
+    background: rgba(250,248,243,0.66);
+    border: 1px solid rgba(255,255,255,0.78);
+    border-radius: 18px;
+    box-shadow: 0 12px 42px rgba(12,20,15,0.13), inset 0 1px 0 rgba(255,255,255,0.76);
+    backdrop-filter: blur(26px) saturate(150%);
+    -webkit-backdrop-filter: blur(26px) saturate(150%);
+    overflow: hidden;
+    z-index: 10;
+  }
+  .topbar::before {
+    content: '';
+    position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(115deg, rgba(255,255,255,0.46), rgba(255,255,255,0.1), rgba(168,201,172,0.13));
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--ink);
+    text-decoration: none;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  .brand img { width: 34px; height: 34px; object-fit: contain; }
+  .topnav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .topnav button {
+    display: none;
+    border: 0;
+    cursor: pointer;
+  }
+  .topnav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    border-radius: 999px;
+    transition: color .2s, background .2s, transform .2s;
+  }
+  .topnav a:hover { color: var(--ink); background: rgba(255,255,255,0.42); }
+  .topnav .primary {
+    color: white;
+    background: var(--accent-dk);
+    padding: 11px 17px;
+    box-shadow: 0 6px 18px rgba(77,122,84,0.24);
+  }
+  .topnav .primary:hover { color: white; background: var(--dark); transform: translateY(-1px); }
+
+  h1, h2, h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+
+  .course-shell {
+    width: min(calc(100% - 32px), 1180px);
+    height: calc(100vh - 104px);
+    margin: 96px auto 0;
+    display: grid;
+    grid-template-columns: 360px minmax(0, 1fr);
+    gap: 18px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sidebar,
+  .lesson-stage {
+    min-height: 0;
+    border: 1px solid rgba(107,159,113,0.16);
+    background: rgba(255,255,255,0.68);
+    box-shadow: 0 24px 70px rgba(27,44,31,0.10);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    border-radius: 28px;
+    overflow: hidden;
+  }
+  .course-intro {
+    padding: 26px 24px 20px;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(145deg, rgba(19,26,22,0.98), rgba(28,24,16,0.98));
+    color: #f5efe4;
+  }
+  .course-kicker {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--accent-lt);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+  .course-intro h1 {
+    margin-bottom: 12px;
+    font-size: 2.35rem;
+  }
+  .course-intro p {
+    color: rgba(245,239,228,0.66);
+    font-size: .92rem;
+  }
+  .course-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+  }
+  .course-meta span {
+    padding: 6px 10px;
+    border-radius: 999px;
+    color: rgba(245,239,228,0.76);
+    background: rgba(255,255,255,0.08);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+  }
+
+  .curriculum {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 14px;
+  }
+  .module {
+    border: 1px solid rgba(107,159,113,0.15);
+    border-radius: 18px;
+    background: rgba(250,248,243,0.68);
+    overflow: hidden;
+  }
+  .module + .module { margin-top: 12px; }
+  .module-toggle {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 15px 15px 14px;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    text-align: left;
+    cursor: pointer;
+  }
+  .module-toggle:hover { background: rgba(255,255,255,0.52); }
+  .module-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--accent-dk);
+    font-size: .65rem;
+    font-weight: 800;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+  .module-title {
+    display: block;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .module-count {
+    color: var(--muted);
+    font-size: .75rem;
+    font-weight: 700;
+    text-align: right;
+  }
+  .module-lessons {
+    display: grid;
+    gap: 6px;
+    padding: 0 10px 12px;
+  }
+  .module.closed .module-lessons { display: none; }
+
+  .lesson-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 34px minmax(0,1fr);
+    gap: 10px;
+    align-items: start;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    background: transparent;
+    color: var(--ink);
+    text-align: left;
+    cursor: pointer;
+    transition: background .2s, border-color .2s, transform .2s;
+  }
+  .lesson-row:hover,
+  .lesson-row.active {
+    background: white;
+    border-color: rgba(107,159,113,0.22);
+    transform: translateX(2px);
+  }
+  .lesson-row.done .lesson-dot {
+    background: var(--dark);
+  }
+  .lesson-row.done .lesson-dot::before {
+    content: '✓';
+  }
+  .lesson-row.done .lesson-dot {
+    font-size: 0;
+  }
+  .lesson-row.done .lesson-dot::before {
+    font-size: .78rem;
+  }
+  .lesson-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    color: white;
+    background: var(--accent-dk);
+    font-size: .72rem;
+    font-weight: 800;
+  }
+  .lesson-row small {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--accent-dk);
+    font-size: .64rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .lesson-row strong {
+    display: block;
+    font-size: .88rem;
+    line-height: 1.32;
+  }
+
+  .lesson-stage {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    border-radius: 28px;
+    overflow: hidden;
+  }
+  .player {
+    position: relative;
+    background: #0f1511;
+  }
+  .player::before {
+    content: '';
+    display: block;
+    aspect-ratio: 16 / 9;
+  }
+  .player iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .lesson-content {
+    min-height: 0;
+    overflow: auto;
+    padding: clamp(24px, 4vw, 44px);
+  }
+  .lesson-back {
+    display: none;
+    margin-bottom: 18px;
+    border: 0;
+    background: transparent;
+    color: var(--accent-dk);
+    cursor: pointer;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .lesson-back:hover { color: var(--dark); }
+  .lesson-path {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    color: var(--accent-dk);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  .lesson-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: white;
+    background: var(--accent-dk);
+    letter-spacing: 0;
+  }
+  .lesson-content h2 {
+    max-width: 760px;
+    margin-bottom: 16px;
+    font-size: clamp(2.1rem, 4.5vw, 4.35rem);
+  }
+  .lesson-summary {
+    max-width: 760px;
+    margin-bottom: 22px;
+    color: var(--muted);
+    font-size: 1.03rem;
+  }
+  .field-note {
+    max-width: 760px;
+    padding: 20px 22px;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 18px 18px 0;
+    background: rgba(240,234,216,0.62);
+    color: #55554f;
+  }
+  .lesson-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 12px 20px;
+    border-radius: 999px;
+    border: 1px solid rgba(107,159,113,0.28);
+    color: var(--accent-dk);
+    background: rgba(255,255,255,0.62);
+    text-decoration: none;
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    transition: transform .2s, background .2s, color .2s, box-shadow .2s;
+  }
+  .button:hover { transform: translateY(-2px); background: white; box-shadow: 0 10px 26px rgba(77,122,84,.16); }
+  .button.primary { color: white; background: var(--accent-dk); border-color: var(--accent-dk); }
+  .button.primary:hover { background: var(--dark); color: white; }
+  .button.complete {
+    color: var(--dark);
+    background: rgba(168,201,172,0.22);
+    border-color: rgba(107,159,113,0.28);
+  }
+  .button.complete.done {
+    color: white;
+    background: var(--dark);
+    border-color: var(--dark);
+  }
+
+  @media (max-width: 900px) {
+    html, body { height: 100%; overflow: hidden; }
+    .topbar {
+      top: 10px;
+      width: calc(100% - 20px);
+      height: 58px;
+      padding: 8px 9px 8px 12px;
+    }
+    .brand span { display: none; }
+    .topnav { gap: 6px; }
+    .topnav a:not(.primary) { display: none; }
+    .topnav .primary {
+      display: inline-flex;
+      padding: 10px 12px;
+      font-size: .7rem;
+    }
+    .course-shell {
+      width: calc(100% - 20px);
+      height: calc(100dvh - 82px);
+      margin-top: 82px;
+      display: flex;
+      grid-template-columns: none;
+      gap: 12px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .course-shell::-webkit-scrollbar { display: none; }
+    .sidebar,
+    .lesson-stage {
+      flex: 0 0 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 22px;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+    .sidebar {
+      grid-row: auto;
+    }
+    .course-intro {
+      padding: 20px 20px 16px;
+    }
+    .course-intro h1 {
+      font-size: 1.72rem;
+      margin-bottom: 8px;
+    }
+    .course-intro p {
+      font-size: .84rem;
+      line-height: 1.55;
+    }
+    .course-meta {
+      margin-top: 12px;
+    }
+    .curriculum {
+      flex: 1;
+      min-height: 0;
+      max-height: none;
+      overflow: auto;
+      padding: 10px;
+    }
+    .lesson-stage {
+      grid-row: auto;
+    }
+    .lesson-content {
+      min-height: 0;
+      overflow: auto;
+      padding: 24px 20px 28px;
+    }
+    .lesson-back {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+    }
+    .lesson-content h2 {
+      font-size: clamp(2rem, 11vw, 3.2rem);
+    }
+    .player::before {
+      aspect-ratio: 16 / 10;
+    }
+    .lesson-actions { align-items: stretch; flex-direction: column; }
+    .button { width: 100%; }
+  }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="SoulSafari home">
+      <img src="assets/soulsafari-logo.png" alt="" aria-hidden="true" />
+      <span>SoulSafari</span>
+    </a>
+    <nav class="topnav" aria-label="Primary navigation">
+      <a href="index.html#selfsafari">Self Safari</a>
+      <a href="index.html">Home</a>
+      <a class="primary" href="#curriculum" data-panel="curriculum">Lessons</a>
+    </nav>
+  </header>
+
+  <main class="course-shell">
+    <aside class="sidebar" id="curriculum">
+      <section class="course-intro">
+        <span class="course-kicker">Learn Safari</span>
+        <h1>A journey through the interior.</h1>
+        <p>Choose a terrain. Watch one lesson. Let the question stay with you for a while.</p>
+        <div class="course-meta">
+          <span id="lessonCount">8 lessons</span>
+          <span>self-paced</span>
+        </div>
+      </section>
+      <section class="curriculum" id="moduleList" aria-label="Learn Safari lessons">
+        <div class="module">
+          <div class="module-toggle">
+            <span>
+              <span class="module-label">Loading</span>
+              <span class="module-title">Preparing the journey…</span>
+            </span>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <section class="lesson-stage" id="watchPanel" aria-live="polite">
+      <div class="player">
+        <iframe
+          id="lessonPlayer"
+          title="SoulSafari lesson"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+      </div>
+
+      <article class="lesson-content">
+        <button class="lesson-back" type="button" data-panel="curriculum">← Lessons</button>
+        <div class="lesson-path">
+          <span class="lesson-number" id="lessonNumber">01</span>
+          <span id="lessonKicker">Loading lesson…</span>
+        </div>
+        <h2 id="lessonTitle">Loading Learn Safari…</h2>
+        <p class="lesson-summary" id="lessonSummary">The current lesson will appear here.</p>
+        <p class="field-note" id="lessonExplainer">Choose a lesson from the curriculum.</p>
+        <div class="lesson-actions">
+          <button class="button complete" id="completeLesson" type="button">Mark complete</button>
+          <a class="button" id="lessonYoutube" href="https://www.youtube.com/@soulsafari108" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+          <a class="button primary" href="index.html#selfsafari">Take the Self Safari</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+  const JOURNEY_SECTIONS = [
+    {
+      id: 'steadying',
+      title: 'Steadying the mind',
+      label: 'Begin here',
+      description: 'Attention, worry, and returning to the real moment.',
+      lessonIds: ['bHFYKmSyNxQ', 'l9j92Q2CZgo']
+    },
+    {
+      id: 'worth',
+      title: 'Worth, wanting, and the grip',
+      label: 'Inner weather',
+      description: 'Enoughness, desire, and the hand that closes too tightly.',
+      lessonIds: ['3ZrFoy1eZ_A', '0mcHoYw22Ow']
+    },
+    {
+      id: 'carried',
+      title: 'What you carry',
+      label: 'Memory and action',
+      description: 'Old wounds, repeated patterns, and what your actions keep creating.',
+      lessonIds: ['bnDOtMcO9UU', 'MQ5T3UUqivc']
+    },
+    {
+      id: 'way',
+      title: 'Your own way',
+      label: 'Direction',
+      description: 'The life that is quietly native to you.',
+      lessonIds: ['VzV3FXjM2Jo']
+    },
+    {
+      id: 'wonder',
+      title: 'Wonder and return',
+      label: 'Re-enchantment',
+      description: 'Seeing the ordinary until it begins to shimmer again.',
+      lessonIds: ['7prlL2SoG_A']
+    }
+  ];
+
+  const LESSON_META = {
+    bHFYKmSyNxQ: {
+      word: 'Chanchala',
+      theme: 'The restless mind',
+      title: "The 3am Mind",
+      summary: "Start here if your mind keeps running after the day is done. The goal is not to beat the mind into silence, but to stop obeying every lap it runs.",
+      explainer: "Field note: when the loop begins, name it gently — “thinking is happening.” Then notice the room, the breath, and the body that is already here."
+    },
+    l9j92Q2CZgo: {
+      word: 'Abhaya',
+      theme: 'Fearlessness',
+      title: "Why You Can't Stop Worrying About the Future",
+      summary: "Worry looks like preparation, but often it is imagination rehearsing pain. This lesson asks what it means to meet the real moment when it arrives.",
+      explainer: "Field note: separate preparation from rehearsal. If there is one real action to take, take it. If not, admit: “this is a future movie.”"
+    },
+    '3ZrFoy1eZ_A': {
+      word: 'Purna',
+      theme: 'Wholeness',
+      title: "Why You Never Feel Good Enough",
+      summary: "The not-enough voice keeps moving the finish line. This lesson points toward a fullness that achievement can express, but never manufacture.",
+      explainer: "Field note: when comparison appears, ask whose ruler you are holding. Then set the ruler down for one breath before choosing your next move."
+    },
+    '0mcHoYw22Ow': {
+      word: 'Vairagya',
+      theme: 'The grip that loses everything',
+      title: "You Were Never Asked to Stop Wanting",
+      summary: "Desire is not the enemy. Suffering often begins when the hand closes so tightly that life has no room to move.",
+      explainer: "Field note: name the want without apology. Then loosen the demand that it must happen in one exact shape to prove your life is okay."
+    },
+    bnDOtMcO9UU: {
+      word: 'Kshama',
+      theme: 'Forgiveness as strength',
+      title: "The Poison You Keep Drinking",
+      summary: "Forgiveness is not pretending the wound was fine. It is the strength to stop staging the injury inside your own body every day.",
+      explainer: "Field note: keep every boundary you need. Then ask what part of the old event you are still replaying on their behalf."
+    },
+    MQ5T3UUqivc: {
+      word: 'Karma',
+      theme: 'Action without the judge',
+      title: "The Ledger That Has No Judge",
+      summary: "Karma is often reduced to cosmic bookkeeping. This lesson brings it back to action, consequence, and the patterns we keep feeding.",
+      explainer: "Field note: choose one repeated action and ask, “what kind of person does this practice create if I keep doing it?”"
+    },
+    VzV3FXjM2Jo: {
+      word: 'Svadharma',
+      theme: 'Your own path',
+      title: "The Borrowed Map",
+      summary: "Feeling lost is not always the absence of purpose. Sometimes it is the friction of walking a path that was never yours.",
+      explainer: "Field note: notice envy, admiration, and resistance. Each one may be pointing toward a borrowed map — or toward something native to you."
+    },
+    '7prlL2SoG_A': {
+      word: 'Chamatkar',
+      theme: 'Wonder',
+      title: "The Making of a Wow",
+      summary: "Wonder is not only in the object. It is in the meeting between attention and the world. This lesson reopens the ordinary.",
+      explainer: "Field note: once today, let something be seen without naming its use. Stay until the ordinary gives back a little shimmer."
+    }
+  };
+
+  const FALLBACK_LESSONS = [
+    { id: 'l9j92Q2CZgo', title: "Why You Can't Stop Worrying About the Future — And How to Step Out Tonight", published: '2026-06-26T18:43:33+00:00', thumbnail: 'https://i1.ytimg.com/vi/l9j92Q2CZgo/hqdefault.jpg', url: 'https://www.youtube.com/watch?v=l9j92Q2CZgo' },
+    { id: '3ZrFoy1eZ_A', title: 'Why You Never Feel Good Enough — And the Old Idea That Ends It', published: '2026-06-26T18:34:29+00:00', thumbnail: 'https://i4.ytimg.com/vi/3ZrFoy1eZ_A/hqdefault.jpg', url: 'https://www.youtube.com/watch?v=3ZrFoy1eZ_A' },
+    { id: 'bnDOtMcO9UU', title: 'The Poison You Keep Drinking — Why Forgiveness Was Never About Them', published: '2026-06-25T13:57:03+00:00', thumbnail: 'https://i3.ytimg.com/vi/bnDOtMcO9UU/hqdefault.jpg', url: 'https://www.youtube.com/watch?v=bnDOtMcO9UU' },
+    { id: 'VzV3FXjM2Jo', title: "The Borrowed Map — Why You Feel Lost Even When You're Doing Everything Right", published: '2026-06-22T15:14:25+00:00', thumbnail: 'https://i3.ytimg.com/vi/VzV3FXjM2Jo/hqdefault.jpg', url: 'https://www.youtube.com/watch?v=VzV3FXjM2Jo' },
+    { id: 'bHFYKmSyNxQ', title: "The 3am Mind: Why You Can't Switch It Off, and What To Do Instead", published: '2026-06-21T12:56:06+00:00', thumbnail: 'https://i.ytimg.com/vi/bHFYKmSyNxQ/hqdefault.jpg', url: 'https://www.youtube.com/watch?v=bHFYKmSyNxQ' },
+    { id: '0mcHoYw22Ow', title: 'You Were Never Asked to Stop Wanting', published: '2026-06-19T00:00:00+00:00', thumbnail: 'https://i.ytimg.com/vi/0mcHoYw22Ow/hqdefault.jpg', url: 'https://www.youtube.com/watch?v=0mcHoYw22Ow' },
+    { id: 'MQ5T3UUqivc', title: 'The Ledger That Has No Judge — What Karma Actually Means', published: '2026-06-17T00:00:00+00:00', thumbnail: 'https://i.ytimg.com/vi/MQ5T3UUqivc/hqdefault.jpg', url: 'https://www.youtube.com/watch?v=MQ5T3UUqivc' },
+    { id: '7prlL2SoG_A', title: 'The Making of a Wow | चमत्कार (Chamatkar)', published: '2026-06-15T00:00:00+00:00', thumbnail: 'https://i.ytimg.com/vi/7prlL2SoG_A/hqdefault.jpg', url: 'https://www.youtube.com/watch?v=7prlL2SoG_A' }
+  ];
+
+  const STORAGE_KEY = 'soulsafari.learn.progress';
+  let currentLessonId = '';
+  let currentSections = [];
+
+  function loadProgress() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { completed: [], current: '' };
+    } catch {
+      return { completed: [], current: '' };
+    }
+  }
+
+  function saveProgress(progress) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      completed: Array.from(new Set(progress.completed || [])),
+      current: progress.current || ''
+    }));
+  }
+
+  function isComplete(id) {
+    return loadProgress().completed.includes(id);
+  }
+
+  function setText(el, text) {
+    el.textContent = text;
+    return el;
+  }
+
+  function isMobileCourse() {
+    return window.matchMedia('(max-width: 900px)').matches;
+  }
+
+  function showPanel(id) {
+    if (!isMobileCourse()) return;
+    document.getElementById(id)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'start'
+    });
+  }
+
+  function cleanTitle(video) {
+    return LESSON_META[video.id]?.title || video.title.replace(/\s+[—|-]\s+.*$/, '').trim();
+  }
+
+  function lessonData(video, number, section) {
+    const meta = LESSON_META[video.id] || {};
+    const fallbackSummary = video.description
+      ? video.description.split(/\n\s*\n/).find(Boolean)
+      : 'A field note from the expedition into the interior.';
+
+    return {
+      ...video,
+      section,
+      number: String(number).padStart(2, '0'),
+      word: meta.word || 'Field Note',
+      theme: meta.theme || section.title,
+      displayTitle: cleanTitle(video),
+      summary: meta.summary || fallbackSummary,
+      explainer: meta.explainer || 'Field note: watch once without taking notes. Then return to the question it leaves behind and write one honest sentence.'
+    };
+  }
+
+  function setFeaturedLesson(lesson) {
+    currentLessonId = lesson.id;
+    const progress = loadProgress();
+    progress.current = lesson.id;
+    saveProgress(progress);
+
+    document.getElementById('lessonPlayer').src = `https://www.youtube-nocookie.com/embed/${lesson.id}?rel=0`;
+    document.getElementById('lessonPlayer').title = lesson.title;
+    document.getElementById('lessonNumber').textContent = lesson.number;
+    document.getElementById('lessonKicker').textContent = `${lesson.section.title} · ${lesson.word}`;
+    document.getElementById('lessonTitle').textContent = lesson.displayTitle;
+    document.getElementById('lessonSummary').textContent = lesson.summary;
+    document.getElementById('lessonExplainer').textContent = lesson.explainer;
+    document.getElementById('lessonYoutube').href = lesson.url || `https://www.youtube.com/watch?v=${lesson.id}`;
+    updateCompleteButton(lesson.id);
+
+    document.querySelectorAll('.lesson-row').forEach((row) => {
+      row.classList.toggle('active', row.dataset.videoId === lesson.id);
+    });
+  }
+
+  function updateCompleteButton(id) {
+    const button = document.getElementById('completeLesson');
+    const done = isComplete(id);
+    button.classList.toggle('done', done);
+    button.textContent = done ? 'Completed ✓' : 'Mark complete';
+    button.setAttribute('aria-pressed', String(done));
+  }
+
+  function refreshProgressUI() {
+    const completed = new Set(loadProgress().completed);
+    document.querySelectorAll('.lesson-row').forEach((row) => {
+      row.classList.toggle('done', completed.has(row.dataset.videoId));
+    });
+    document.querySelectorAll('.module').forEach((module) => {
+      const rows = Array.from(module.querySelectorAll('.lesson-row'));
+      const done = rows.filter((row) => completed.has(row.dataset.videoId)).length;
+      const count = module.querySelector('.module-count');
+      if (count) count.textContent = `${done}/${rows.length} complete`;
+    });
+    if (currentLessonId) updateCompleteButton(currentLessonId);
+  }
+
+  function makeLessonRow(lesson) {
+    const row = document.createElement('button');
+    row.className = 'lesson-row';
+    row.type = 'button';
+    row.dataset.videoId = lesson.id;
+
+    const dot = setText(document.createElement('span'), lesson.number);
+    dot.className = 'lesson-dot';
+
+    const copy = document.createElement('span');
+    copy.append(
+      setText(document.createElement('small'), lesson.word),
+      setText(document.createElement('strong'), lesson.displayTitle)
+    );
+
+    row.append(dot, copy);
+    row.addEventListener('click', () => {
+      setFeaturedLesson(lesson);
+      showPanel('watchPanel');
+    });
+    return row;
+  }
+
+  function makeModule(section, index) {
+    const module = document.createElement('article');
+    module.className = `module${index === 0 ? '' : ' closed'}`;
+
+    const toggle = document.createElement('button');
+    toggle.className = 'module-toggle';
+    toggle.type = 'button';
+
+    const copy = document.createElement('span');
+    copy.append(
+      setText(document.createElement('span'), section.label),
+      setText(document.createElement('span'), section.title)
+    );
+    copy.firstChild.className = 'module-label';
+    copy.lastChild.className = 'module-title';
+
+    const count = setText(document.createElement('span'), `${section.lessons.length} lesson${section.lessons.length === 1 ? '' : 's'}`);
+    count.className = 'module-count';
+    toggle.append(copy, count);
+    toggle.addEventListener('click', () => module.classList.toggle('closed'));
+
+    const lessons = document.createElement('div');
+    lessons.className = 'module-lessons';
+    section.lessons.forEach((lesson) => lessons.append(makeLessonRow(lesson)));
+
+    module.append(toggle, lessons);
+    return module;
+  }
+
+  function normalize(videos) {
+    const byId = new Map(videos.map((video) => [video.id, video]));
+    let lessonNumber = 1;
+
+    return JOURNEY_SECTIONS
+      .map((section) => {
+        const lessons = section.lessonIds
+          .map((id) => byId.get(id) || FALLBACK_LESSONS.find((video) => video.id === id))
+          .filter(Boolean)
+          .map((video) => lessonData(video, lessonNumber++, section));
+        return { ...section, lessons };
+      })
+      .filter((section) => section.lessons.length);
+  }
+
+  function render(videos) {
+    const sections = normalize(Array.from(new Map(videos.map((video) => [video.id, video])).values()));
+    currentSections = sections;
+    const moduleList = document.getElementById('moduleList');
+    const lessonCount = sections.reduce((sum, section) => sum + section.lessons.length, 0);
+
+    moduleList.innerHTML = '';
+    document.getElementById('lessonCount').textContent = `${lessonCount} lesson${lessonCount === 1 ? '' : 's'}`;
+    sections.forEach((section, index) => moduleList.append(makeModule(section, index)));
+
+    const savedCurrent = loadProgress().current;
+    const allLessons = sections.flatMap((section) => section.lessons);
+    const firstLesson = allLessons.find((lesson) => lesson.id === savedCurrent) || sections[0]?.lessons[0];
+    if (firstLesson) setFeaturedLesson(firstLesson);
+    refreshProgressUI();
+  }
+
+  async function loadLessons() {
+    try {
+      if (window.location.protocol === 'file:') throw new Error('Use fallback lessons locally.');
+      const response = await fetch('/api/youtube-videos');
+      if (!response.ok) throw new Error('Could not load lessons.');
+      const data = await response.json();
+      render(data.videos?.length ? data.videos : FALLBACK_LESSONS);
+    } catch {
+      render(FALLBACK_LESSONS);
+    }
+  }
+
+  document.querySelectorAll('[data-panel]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (!isMobileCourse()) return;
+      event.preventDefault();
+      showPanel(link.dataset.panel);
+    });
+  });
+
+  let touchStartX = 0;
+  let touchStartY = 0;
+  const watchPanel = document.getElementById('watchPanel');
+
+  watchPanel.addEventListener('touchstart', (event) => {
+    const touch = event.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+  }, { passive: true });
+
+  watchPanel.addEventListener('touchend', (event) => {
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - touchStartX;
+    const dy = touch.clientY - touchStartY;
+    if (isMobileCourse() && dx > 70 && Math.abs(dy) < 55) {
+      showPanel('curriculum');
+    }
+  }, { passive: true });
+
+  document.getElementById('completeLesson').addEventListener('click', () => {
+    if (!currentLessonId) return;
+    const progress = loadProgress();
+    const completed = new Set(progress.completed || []);
+    if (completed.has(currentLessonId)) completed.delete(currentLessonId);
+    else completed.add(currentLessonId);
+    progress.completed = Array.from(completed);
+    progress.current = currentLessonId;
+    saveProgress(progress);
+    refreshProgressUI();
+  });
+
+  loadLessons();
+  </script>
+</body>
+</html>
