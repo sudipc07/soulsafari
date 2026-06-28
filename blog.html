@@ -90,10 +90,11 @@
   .site-brand {
     display: inline-flex; align-items: center; gap: 9px;
     color: var(--ink); text-decoration: none;
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.16rem; font-weight: 600; letter-spacing: -0.025em;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.18rem; font-weight: 700; letter-spacing: -0.03em;
+    font-synthesis: none;
   }
-  .site-brand span { display: inline-block; font-weight: 600; }
+  .site-brand span { display: inline-block; font-weight: 700; }
   .site-brand img {
     width: 38px; height: 38px; object-fit: contain;
     filter: drop-shadow(0 2px 5px rgba(32,61,38,0.13));
@@ -101,7 +102,9 @@
   .site-links { display: flex; align-items: center; gap: 8px; }
   .site-links a {
     color: rgba(42,52,45,0.82); text-decoration: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: .74rem; font-weight: 700; letter-spacing: .08em;
+    font-synthesis: none;
     text-transform: uppercase; padding: 9px 13px; border-radius: 999px;
     transition: color .2s, background .2s, transform .2s;
   }
@@ -485,8 +488,11 @@
       });
     });
   }
+  function postBySlug(slug) {
+    return posts.find((item) => item.slug === slug) || null;
+  }
   function renderPost(slug) {
-    const post = posts.find((item) => item.slug === slug) || posts[0];
+    const post = postBySlug(slug) || posts[0];
     if (!post) return;
     $('postWord').textContent = post.word_devanagari;
     $('postTranslit').textContent = post.word_transliteration;
@@ -508,6 +514,10 @@
       link.classList.toggle('active', link.dataset.slug === post.slug);
     });
     updateSeo(post);
+    const requested = new URLSearchParams(location.search).get('post');
+    if (requested !== post.slug) {
+      history.replaceState({ slug: post.slug }, '', postUrl(post.slug));
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   function currentSlug() {
@@ -516,9 +526,6 @@
   window.addEventListener('popstate', () => renderPost(currentSlug()));
   renderList();
   const initialSlug = currentSlug();
-  if (!new URLSearchParams(location.search).get('post') && initialSlug) {
-    history.replaceState({ slug: initialSlug }, '', postUrl(initialSlug));
-  }
   renderPost(initialSlug);
   </script>
 </body>

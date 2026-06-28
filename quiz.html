@@ -107,11 +107,12 @@
   .site-brand {
     display: inline-flex; align-items: center; gap: 9px;
     color: var(--ink); text-decoration: none;
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.16rem; font-weight: 600; letter-spacing: -0.025em;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.18rem; font-weight: 700; letter-spacing: -0.03em;
+    font-synthesis: none;
     white-space: nowrap;
   }
-  .site-brand span { display: inline-block; font-weight: 600; }
+  .site-brand span { display: inline-block; font-weight: 700; }
   .site-brand img {
     width: 38px; height: 38px; object-fit: contain;
     filter: drop-shadow(0 2px 5px rgba(32,61,38,0.13));
@@ -119,7 +120,9 @@
   .site-links { display: flex; align-items: center; gap: 8px; }
   .site-links a {
     color: rgba(42,52,45,0.82); text-decoration: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em;
+    font-synthesis: none;
     text-transform: uppercase; padding: 9px 13px; border-radius: 999px;
     transition: color .2s, background .2s;
   }

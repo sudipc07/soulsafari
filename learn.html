@@ -109,13 +109,14 @@
     gap: 9px;
     color: var(--ink);
     text-decoration: none;
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.16rem;
-    font-weight: 600;
-    letter-spacing: -0.025em;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.18rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    font-synthesis: none;
     white-space: nowrap;
   }
-  .site-brand span { display: inline-block; font-weight: 600; }
+  .site-brand span { display: inline-block; font-weight: 700; }
   .site-brand img {
     width: 38px; height: 38px; object-fit: contain;
     filter: drop-shadow(0 2px 5px rgba(32,61,38,0.13));
@@ -128,9 +129,11 @@
   .site-links a {
     color: rgba(42,52,45,0.82);
     text-decoration: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 0.74rem;
     font-weight: 700;
     letter-spacing: 0.08em;
+    font-synthesis: none;
     text-transform: uppercase;
     padding: 9px 13px;
     border-radius: 999px;
@@ -153,6 +156,7 @@
     display: grid;
     grid-template-columns: 360px minmax(0, 1fr);
     gap: 18px;
+    align-items: start;
     position: relative;
     z-index: 1;
   }
@@ -168,6 +172,9 @@
   }
 
   .sidebar {
+    position: sticky;
+    top: 96px;
+    max-height: calc(100dvh - 116px);
     display: flex;
     flex-direction: column;
     border-radius: 18px;
@@ -369,6 +376,7 @@
     display: block;
     border-radius: 18px;
     overflow: visible;
+    scroll-margin-top: 96px;
   }
   .player {
     position: relative;
@@ -645,6 +653,9 @@
       border-radius: 18px 18px 0 0;
     }
     .sidebar {
+      position: relative;
+      top: auto;
+      max-height: calc(100dvh - 82px);
       grid-row: auto;
     }
     .course-intro {
@@ -1017,6 +1028,22 @@
     });
   }
 
+  function resetLessonPosition(behavior = 'smooth') {
+    const stage = document.getElementById('watchPanel');
+    if (!stage) return;
+    stage.scrollTop = 0;
+    if (isMobileCourse()) {
+      window.scrollTo({ top: 0, behavior });
+      showPanel('watchPanel');
+      return;
+    }
+    stage.scrollIntoView({
+      behavior,
+      block: 'start',
+      inline: 'nearest'
+    });
+  }
+
   function cleanTitle(video) {
     return LESSON_META[video.id]?.title || video.title.replace(/\s+[—|-]\s+.*$/, '').trim();
   }
@@ -1032,6 +1059,7 @@
       section,
       number: String(number).padStart(2, '0'),
       word: meta.word || 'Field Note',
+      slug: meta.essaySlug || (meta.word || video.id).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
       theme: meta.theme || section.title,
       essaySlug: meta.essaySlug || '',
       reinforcement: meta.reinforcement || null,
@@ -1075,7 +1103,37 @@
     panel.style.display = '';
   }
 
-  function setFeaturedLesson(lesson) {
+  function lessonUrl(lesson) {
+    return `${location.pathname}?lesson=${encodeURIComponent(lesson.slug)}`;
+  }
+
+  function requestedLessonKey() {
+    return new URLSearchParams(location.search).get('lesson') || new URLSearchParams(location.search).get('video');
+  }
+
+  function findLessonByKey(key, lessons = allLessons()) {
+    if (!key) return null;
+    const normalized = key.trim().toLowerCase();
+    const numeric = normalized.replace(/^0+/, '') || normalized;
+    return lessons.find((lesson) => (
+      lesson.slug === normalized ||
+      lesson.id.toLowerCase() === normalized ||
+      lesson.essaySlug === normalized ||
+      lesson.word.toLowerCase() === normalized ||
+      lesson.number === normalized.padStart(2, '0') ||
+      String(Number(lesson.number)) === numeric
+    )) || null;
+  }
+
+  function syncLessonUrl(lesson, mode = 'replace') {
+    if (!lesson || !history[`${mode}State`]) return;
+    const current = new URLSearchParams(location.search).get('lesson');
+    if (current === lesson.slug && !new URLSearchParams(location.search).get('video')) return;
+    history[`${mode}State`]({ lesson: lesson.slug }, '', lessonUrl(lesson));
+  }
+
+  function setFeaturedLesson(lesson, options = {}) {
+    const { urlMode = 'replace', updateUrl = true } = options;
     currentLessonId = lesson.id;
     const progress = loadProgress();
     progress.current = lesson.id;
@@ -1091,6 +1149,7 @@
     setEssayPreview(lesson);
     updateCompleteButton(lesson.id);
     syncActiveLessonRow(lesson.id);
+    if (updateUrl) syncLessonUrl(lesson, urlMode);
   }
 
   function syncActiveLessonRow(id = currentLessonId) {
@@ -1126,13 +1185,8 @@
 
   function goToLesson(lesson) {
     if (!lesson) return;
-    setFeaturedLesson(lesson);
-    showPanel('watchPanel');
-    document.querySelector('.lesson-stage')?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-      inline: 'start'
-    });
+    setFeaturedLesson(lesson, { urlMode: 'push' });
+    resetLessonPosition('smooth');
   }
 
   function updateNextButton(id) {
@@ -1174,8 +1228,7 @@
 
     row.append(dot, copy);
     row.addEventListener('click', () => {
-      setFeaturedLesson(lesson);
-      showPanel('watchPanel');
+      goToLesson(lesson);
     });
     return row;
   }
@@ -1203,8 +1256,7 @@
     toggle.append(copy, count);
     toggle.addEventListener('click', () => {
       if (section.lessons[0]) {
-        setFeaturedLesson(section.lessons[0]);
-        showPanel('watchPanel');
+        goToLesson(section.lessons[0]);
       }
     });
 
@@ -1241,10 +1293,12 @@
     document.getElementById('lessonCount').textContent = `${lessonCount} lesson${lessonCount === 1 ? '' : 's'}`;
     sections.forEach((section, index) => moduleList.append(makeModule(section, index)));
 
-    const savedCurrent = loadProgress().current;
     const allLessons = sections.flatMap((section) => section.lessons);
-    const firstLesson = allLessons.find((lesson) => lesson.id === savedCurrent) || sections[0]?.lessons[0];
-    if (firstLesson) setFeaturedLesson(firstLesson);
+    const savedCurrent = loadProgress().current;
+    const requestedLesson = findLessonByKey(requestedLessonKey(), allLessons);
+    const savedLesson = allLessons.find((lesson) => lesson.id === savedCurrent);
+    const firstLesson = requestedLesson || savedLesson || sections[0]?.lessons[0];
+    if (firstLesson) setFeaturedLesson(firstLesson, { urlMode: 'replace' });
     refreshProgressUI();
   }
 
@@ -1303,6 +1357,14 @@
   document.getElementById('nextLesson').addEventListener('click', () => {
     const next = nextLessonAfter(currentLessonId);
     if (next) goToLesson(next);
+  });
+
+  window.addEventListener('popstate', () => {
+    const lesson = findLessonByKey(requestedLessonKey()) || allLessons()[0];
+    if (lesson) {
+      setFeaturedLesson(lesson, { updateUrl: false });
+      resetLessonPosition('auto');
+    }
   });
 
   loadLessons();
