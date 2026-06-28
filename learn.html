@@ -88,7 +88,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 18px;
-    padding: 8px 10px 8px 16px;
+    padding: 6px 9px 6px 12px;
     background: rgba(250,248,243,0.66);
     border: 1px solid rgba(255,255,255,0.78);
     border-radius: 18px;
@@ -106,29 +106,33 @@
   .site-brand {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 9px;
     color: var(--ink);
     text-decoration: none;
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.05rem;
+    font-size: 1.16rem;
     font-weight: 600;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
     white-space: nowrap;
   }
-  .site-brand img { width: 34px; height: 34px; object-fit: contain; }
+  .site-brand span { display: inline-block; font-weight: 600; }
+  .site-brand img {
+    width: 38px; height: 38px; object-fit: contain;
+    filter: drop-shadow(0 2px 5px rgba(32,61,38,0.13));
+  }
   .site-links {
     display: flex;
     align-items: center;
     gap: 8px;
   }
   .site-links a {
-    color: var(--muted);
+    color: rgba(42,52,45,0.82);
     text-decoration: none;
-    font-size: 0.72rem;
-    font-weight: 600;
+    font-size: 0.74rem;
+    font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 10px 14px;
+    padding: 9px 13px;
     border-radius: 999px;
     transition: color .2s, background .2s, transform .2s;
   }
