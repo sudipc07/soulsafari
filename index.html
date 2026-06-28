@@ -229,6 +229,8 @@
   }
   .site-links { display: flex; align-items: center; gap: 8px; }
   .site-links > a {
+    position: relative;
+    display: inline-flex; align-items: center; gap: 6px;
     color: rgba(42,52,45,0.82); text-decoration: none;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em;
@@ -237,7 +239,48 @@
     transition: color .2s, background .2s, transform .2s;
   }
   .site-links > a:hover { color: var(--ink); background: rgba(255,255,255,0.38); }
+  .site-links a::after {
+    content: '';
+    position: absolute; left: 13px; right: 13px; bottom: 5px;
+    height: 2px; border-radius: 999px;
+    background: var(--accent-dk);
+    opacity: 0; transform: scaleX(0.38);
+    transition: opacity .2s, transform .2s;
+  }
+  .site-links a:hover::after,
+  .site-links a[aria-current="page"]::after {
+    opacity: 1; transform: scaleX(1);
+  }
+  .site-links a[aria-current="page"] { color: var(--ink); }
+  .nav-icon {
+    width: 15px; height: 15px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: currentColor; opacity: .92;
+  }
+  .nav-icon svg {
+    width: 100%; height: 100%;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .nav-icon svg .solid { fill: currentColor; stroke: none; }
+  .nav-icon-video { width: 17px; height: 17px; }
   .mobile-label { display: none; }
+
+  .site-footer {
+    width: min(calc(100% - 32px), 1180px);
+    margin: 42px auto 32px;
+    padding-top: 18px;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+    border-top: 1px solid rgba(107,159,113,0.16);
+    color: rgba(42,52,45,0.58);
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
+  }
+  .site-footer a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(107,159,113,0.28);
+  }
+  .site-footer a:hover { color: var(--accent-dk); border-bottom-color: currentColor; }
 
   /* ════════════════════════════════════════════
      §1  HERO  — dark mountain image
@@ -367,6 +410,71 @@
     background: rgba(168,201,172,0.18);
     box-shadow: 0 0 0 4px rgba(168,201,172,0.18), 0 18px 48px rgba(0,0,0,0.28);
   }
+  .hero-seal {
+    width: fit-content;
+    max-width: min(100%, 460px);
+    margin: 18px auto 0;
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 10px 14px 10px 10px;
+    border-radius: 18px;
+    color: rgba(240,236,228,0.82);
+    background: rgba(11,17,14,0.34);
+    border: 1px solid rgba(240,236,228,0.18);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 14px 38px rgba(0,0,0,0.18);
+    backdrop-filter: blur(14px) saturate(135%);
+    -webkit-backdrop-filter: blur(14px) saturate(135%);
+    text-align: left;
+    opacity: 0;
+    transform: translate3d(-42vw, 6px, 0) rotate(-1deg);
+    animation: sealFloatIn 1.45s cubic-bezier(.16,1,.3,1) .92s forwards;
+    transition: opacity .72s cubic-bezier(.16,1,.3,1), transform .72s cubic-bezier(.16,1,.3,1);
+    will-change: transform, opacity;
+  }
+  .hero-seal.seal-exiting {
+    opacity: 0;
+    transform: translate3d(44vw, -5px, 0) rotate(1.5deg);
+    animation: none;
+    pointer-events: none;
+  }
+  @keyframes sealFloatIn {
+    0% {
+      opacity: 0;
+      transform: translate3d(-42vw, 6px, 0) rotate(-1deg);
+    }
+    72% {
+      opacity: 1;
+      transform: translate3d(8px, 0, 0) rotate(0.25deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) rotate(0);
+    }
+  }
+  .hero-seal-mark {
+    width: 38px; height: 38px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    color: var(--dark);
+    background: var(--accent-lt);
+    flex: 0 0 auto;
+  }
+  .hero-seal-mark svg {
+    width: 20px; height: 20px;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .hero-seal-copy strong {
+    display: block;
+    color: #f0ece4;
+    font-size: 0.68rem; font-weight: 800; letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .hero-seal-copy span {
+    display: block;
+    margin-top: 2px;
+    color: rgba(240,236,228,0.58);
+    font-size: 0.82rem; line-height: 1.35;
+  }
   .scroll-hint {
     display: flex; flex-direction: column; align-items: center; gap: 9px;
     margin-top: 68px; color: rgba(198,180,138,0.8);
@@ -385,13 +493,33 @@
   /* ════════════════════════════════════════════
      §2  THE IDEA  — wisdom reveals
   ════════════════════════════════════════════ */
-  #idea { background: #ffffff; overflow: hidden; }
+  #idea {
+    background:
+      radial-gradient(circle at 88% 0%, rgba(168,201,172,0.13), transparent 34%),
+      linear-gradient(180deg, #f4f0e6 0%, #faf8f3 42%, #ffffff 100%);
+    overflow: hidden;
+  }
 
   .bg-num {
     position: absolute; font-family: 'Playfair Display', Georgia, serif;
     font-weight: 700; line-height: 1;
     pointer-events: none; user-select: none;
-    color: rgba(107,159,113,0.065);
+    color: rgba(107,159,113,0.045);
+    mix-blend-mode: multiply;
+    z-index: 0;
+  }
+  .bg-num.sand { color: rgba(198,180,138,0.09); }
+  .bg-num.dark { color: rgba(198,180,138,0.055); mix-blend-mode: normal; }
+  #idea .bg-num { color: rgba(107,159,113,0.035); }
+  #idea > .container,
+  #landscape > .container,
+  #alignment > .container,
+  #misalignment > .container,
+  #reflection > .container,
+  #videos > .container,
+  #journey > .container {
+    position: relative;
+    z-index: 1;
   }
 
   /* Progressive wisdom chain */
@@ -424,17 +552,17 @@
   }
   .wisdom-panel-inner { min-height: 0; overflow: hidden; }
   .wisdom-panel blockquote {
-    margin-top: 20px; padding: 20px 24px;
+    margin-top: 22px; padding: 30px 34px;
     background: rgba(107,159,113,0.06);
-    border-left: 2px solid var(--accent); border-radius: 0 18px 18px 0;
+    border-left: 3px solid var(--accent); border-radius: 0 18px 18px 0;
     font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic; font-size: 0.95rem; color: var(--ink);
-    line-height: 1.65;
+    font-style: italic; font-size: clamp(1.18rem, 2.8vw, 1.58rem); color: var(--ink);
+    line-height: 1.55;
   }
   .wisdom-panel blockquote cite {
-    display: block; font-size: 0.82rem; font-style: normal;
-    color: var(--muted); margin-top: 8px; font-family: 'Inter', sans-serif;
-    letter-spacing: 0.08em;
+    display: block; font-size: 0.92rem; font-style: normal;
+    color: var(--muted); margin-top: 14px; font-family: 'Inter', sans-serif;
+    letter-spacing: 0.12em;
   }
   .wisdom-panel-inner > .wisdom-step { margin: 16px 0 0 24px; }
   .wisdom-panel-inner > .wisdom-step > .wisdom-trigger { margin-top: 0; }
@@ -746,24 +874,77 @@
   #alignment    { background: linear-gradient(160deg, #e8f2e9 0%, var(--sage-bg) 100%); }
   #misalignment { background: linear-gradient(160deg, #f8edda 0%, var(--gold-bg) 100%); }
 
+  .signal-intro {
+    max-width: 58ch;
+    margin-bottom: 0;
+    color: rgba(42,52,45,0.72);
+    font-size: 1.02rem;
+    line-height: 1.78;
+  }
+  .signal-action {
+    display: inline-flex;
+    margin-left: 6px;
+    color: var(--accent-dk);
+    font-size: 0.78rem;
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  #misalignment .signal-action { color: #9b7333; }
+
   .sig-list { list-style: none; margin-top: 44px; }
   .sig-list li {
-    display: flex; align-items: baseline; gap: 16px;
-    padding: 18px 0; border-bottom: 1px solid var(--divider);
-    color: var(--muted); font-size: 1rem; line-height: 1.6;
-    cursor: pointer; transition: color .2s, padding-left .25s;
+    display: flex; align-items: center; gap: 18px;
+    padding: 18px 20px; margin-bottom: 8px;
+    border: 1px solid rgba(107,159,113,0.13);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.34);
+    color: rgba(42,52,45,0.74); font-size: 1rem; line-height: 1.5;
+    cursor: pointer; transition: color .2s, background .2s, border-color .2s, transform .25s;
     position: relative;
   }
-  .sig-list li:first-child { border-top: 1px solid var(--divider); }
-  .sig-list li:hover { color: var(--ink); padding-left: 4px; }
-  .sig-list li.checked { color: var(--ink); }
+  .sig-list li:first-child { border-top: 1px solid rgba(107,159,113,0.13); }
+  .sig-list li:hover {
+    color: var(--ink);
+    background: rgba(255,255,255,0.58);
+    border-color: rgba(107,159,113,0.24);
+    transform: translateY(-1px);
+  }
+  .sig-list li.checked {
+    color: var(--ink);
+    background: rgba(255,255,255,0.72);
+    border-color: rgba(77,122,84,0.34);
+  }
 
   .sig-num {
     font-family: 'Playfair Display', Georgia, serif; font-style: italic;
-    font-size: 0.78rem; color: var(--accent); min-width: 16px; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(107,159,113,0.11);
+    font-size: 0.82rem; color: var(--accent-dk); flex-shrink: 0;
     transition: transform .3s;
   }
-  #misalignment .sig-num { color: var(--sand); }
+  .sig-text {
+    display: block;
+    color: rgba(42,52,45,0.78);
+    font-weight: 500;
+  }
+  .sig-list li.checked .sig-text { color: var(--ink); font-weight: 600; }
+  #misalignment .sig-list li {
+    border-color: rgba(198,180,138,0.20);
+    background: rgba(255,255,255,0.30);
+  }
+  #misalignment .sig-list li:hover {
+    border-color: rgba(198,180,138,0.36);
+    background: rgba(255,255,255,0.52);
+  }
+  #misalignment .sig-list li.checked {
+    border-color: rgba(155,115,51,0.38);
+    background: rgba(255,255,255,0.66);
+  }
+  #misalignment .sig-num { color: #8f682b; background: rgba(198,180,138,0.20); }
 
   .sig-check {
     margin-left: auto; width: 18px; height: 18px; border-radius: 50%;
@@ -933,7 +1114,7 @@
   /* ════════════════════════════════════════════
      §9  JOURNEY  — expandable topics
   ════════════════════════════════════════════ */
-  #journey { background: var(--close-bg); padding-bottom: 180px; }
+  #journey { background: var(--close-bg); padding-bottom: 54px; }
 
   /* Journey dark-mode overrides */
   #journey .section-title  { color: #e6e0d4; }
@@ -941,6 +1122,13 @@
   #journey .eyebrow        { color: var(--accent-lt); }
   #journey .eyebrow::before { background: var(--accent-lt); }
   #journey .bg-num         { color: rgba(198,180,138,0.06); }
+  #journey .site-footer {
+    margin: 94px auto 0;
+    border-top-color: rgba(230,224,212,0.18);
+    color: rgba(230,224,212,0.58);
+  }
+  #journey .site-footer a { border-bottom-color: rgba(230,224,212,0.28); }
+  #journey .site-footer a:hover { color: #f4efd9; border-bottom-color: currentColor; }
 
   .journey-list { list-style: none; margin: 36px 0 64px; }
   .journey-item {
@@ -1062,6 +1250,7 @@
     .site-links > a { padding: 9px 11px; font-size: 0.68rem; letter-spacing: 0.07em; }
     .site-links .desktop-label { display: none; }
     .site-links .mobile-label { display: inline; }
+    .site-footer { justify-content: center; text-align: center; margin-bottom: 24px; }
     .hero-actions { grid-template-columns: 1fr; }
     .hero-cta { min-height: 86px; padding: 16px 18px; }
     .quiz-heading { grid-template-columns: 1fr; gap: 24px; }
@@ -1330,9 +1519,9 @@
       <span>SoulSafari</span>
     </a>
     <nav class="site-links" aria-label="Primary navigation">
-      <a href="learn.html">Learn</a>
-      <a href="blog.html">Blog</a>
-      <a href="quiz.html">Quiz</a>
+      <a href="learn.html"><span class="nav-icon nav-icon-video" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="11.5" rx="2.2" /><path class="solid" d="M10.2 9.1v4.8l4.2-2.4z" /><path d="M9 20h6" /></svg></span><span>Learn</span></a>
+      <a href="blog.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5.2h5.2c1.1 0 2 .9 2 2v11.1c-.5-.7-1.2-1-2.1-1H5z" /><path d="M12.2 7.2c0-1.1.9-2 2-2H19v12.1h-4.9c-.8 0-1.4.3-1.9 1z" /></svg></span><span>Blog</span></a>
+      <a href="quiz.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="16" rx="3" /><path d="M9 9h.01" /><path d="M11.5 9H16" /><path d="M9 13h.01" /><path d="M11.5 13H16" /><path d="M8.5 16.8l1.2 1.2 2.3-2.7" /><path d="M13.5 17H16" /></svg></span><span>Quiz</span></a>
     </nav>
   </header>
 
@@ -1363,12 +1552,13 @@
             <span class="hero-card-head">
               <span class="hero-card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
-                  <path d="M8 6h11" />
-                  <path d="M8 12h11" />
-                  <path d="M8 18h11" />
-                  <path d="M3.5 6.2l1 1 2-2.4" />
-                  <path d="M3.5 12.2l1 1 2-2.4" />
-                  <path d="M3.5 18.2l1 1 2-2.4" />
+                  <rect x="5" y="4" width="14" height="16" rx="3" />
+                  <path d="M9 9h.01" />
+                  <path d="M11.5 9H16" />
+                  <path d="M9 13h.01" />
+                  <path d="M11.5 13H16" />
+                  <path d="M8.5 16.8l1.2 1.2 2.3-2.7" />
+                  <path d="M13.5 17H16" />
                 </svg>
               </span>
               <strong>Quiz</strong>
@@ -1381,8 +1571,9 @@
             <span class="hero-card-head">
               <span class="hero-card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
-                  <rect x="3" y="5" width="18" height="14" rx="2.5" />
-                  <path class="solid" d="M10.2 8.6v6.8l5.4-3.4z" />
+                  <rect x="3.5" y="5.5" width="17" height="11.5" rx="2.2" />
+                  <path class="solid" d="M10.2 9.1v4.8l4.2-2.4z" />
+                  <path d="M9 20h6" />
                 </svg>
               </span>
               <strong>Learn</strong>
@@ -1395,10 +1586,8 @@
             <span class="hero-card-head">
               <span class="hero-card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
-                  <path d="M6 4.8h9.5L19 8.3v10.9H6z" />
-                  <path d="M15.5 4.8v3.7H19" />
-                  <path d="M9 12h6" />
-                  <path d="M9 15.6h4.5" />
+                  <path d="M5 5.2h5.2c1.1 0 2 .9 2 2v11.1c-.5-.7-1.2-1-2.1-1H5z" />
+                  <path d="M12.2 7.2c0-1.1.9-2 2-2H19v12.1h-4.9c-.8 0-1.4.3-1.9 1z" />
                 </svg>
               </span>
               <strong>Blog</strong>
@@ -1406,6 +1595,20 @@
             <small>Read deeper when one idea asks you to stay with it.</small>
           </span>
         </a>
+      </div>
+      <div class="hero-seal" id="heroSeal" aria-label="Interactive website, choose your own journey">
+        <span class="hero-seal-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="8" />
+            <path d="M12 7v5l3 3" />
+            <path d="M4 12h2" />
+            <path d="M18 12h2" />
+          </svg>
+        </span>
+        <span class="hero-seal-copy">
+          <strong>Interactive website</strong>
+          <span>Choose your own journey</span>
+        </span>
       </div>
       <div class="scroll-hint r d4" aria-hidden="true">
         <span>Explore</span>
@@ -1419,7 +1622,7 @@
        §2  THE IDEA
   ════════════════════════ -->
   <section id="idea">
-    <div class="bg-num" style="right:-1%;top:10px;font-size:min(22vw,240px);" aria-hidden="true">01</div>
+    <div class="bg-num" style="left:-2%;top:8px;font-size:min(20vw,220px);" aria-hidden="true">01</div>
     <div class="container">
 
       <span class="eyebrow r">The Idea</span>
@@ -1498,6 +1701,7 @@
        §4  LANDSCAPE
   ════════════════════════ -->
   <section id="landscape">
+    <div class="bg-num" style="left:-2%;top:16px;font-size:min(20vw,230px);" aria-hidden="true">02</div>
     <div class="container">
 
       <span class="eyebrow r">The Landscape</span>
@@ -1587,36 +1791,37 @@
        §5  ALIGNMENT
   ════════════════════════ -->
   <section id="alignment">
+    <div class="bg-num" style="left:-2%;top:18px;font-size:min(20vw,230px);" aria-hidden="true">03</div>
     <div class="container">
 
       <span class="eyebrow r">Signals</span>
       <h2 class="section-title r">What Alignment<br />Often Feels Like</h2>
-      <p class="r">Alignment does not mean life is perfect. But certain signals often appear. <em style="color:var(--accent);font-style:normal;font-size:.85rem;">Tap the ones you recognise.</em></p>
+      <p class="signal-intro r">Alignment does not mean life is perfect. But certain signals often appear. <em class="signal-action">Tap the ones you recognise.</em></p>
 
       <ul class="sig-list" id="alignList">
         <li class="r d1" onclick="toggleSig(this,'align')">
           <span class="sig-num">i</span>
-          work that feels meaningful even when difficult
+          <span class="sig-text">work that feels meaningful even when difficult</span>
           <span class="sig-check"><svg viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,4 3.5,6.5 9,1"/></svg></span>
         </li>
         <li class="r d2" onclick="toggleSig(this,'align')">
           <span class="sig-num">ii</span>
-          energy that returns after effort rather than disappearing
+          <span class="sig-text">energy that returns after effort rather than disappearing</span>
           <span class="sig-check"><svg viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,4 3.5,6.5 9,1"/></svg></span>
         </li>
         <li class="r d3" onclick="toggleSig(this,'align')">
           <span class="sig-num">iii</span>
-          relationships that allow authenticity
+          <span class="sig-text">relationships that allow authenticity</span>
           <span class="sig-check"><svg viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,4 3.5,6.5 9,1"/></svg></span>
         </li>
         <li class="r d4" onclick="toggleSig(this,'align')">
           <span class="sig-num">iv</span>
-          curiosity about the future instead of quiet dread
+          <span class="sig-text">curiosity about the future instead of quiet dread</span>
           <span class="sig-check"><svg viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,4 3.5,6.5 9,1"/></svg></span>
         </li>
         <li class="r d5" onclick="toggleSig(this,'align')">
           <span class="sig-num">v</span>
-          moments of calm clarity in the middle of complexity
+          <span class="sig-text">moments of calm clarity in the middle of complexity</span>
           <span class="sig-check"><svg viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,4 3.5,6.5 9,1"/></svg></span>
         </li>
       </ul>
@@ -1633,36 +1838,37 @@
        §6  MISALIGNMENT
   ════════════════════════ -->
   <section id="misalignment">
+    <div class="bg-num sand" style="left:-2%;top:18px;font-size:min(20vw,230px);" aria-hidden="true">04</div>
     <div class="container">
 
       <span class="eyebrow sand r">Signals</span>
       <h2 class="section-title r">When Something Inside<br />Begins to Push Back</h2>
-      <p class="r">Misalignment rarely appears suddenly. It often begins as small signals people ignore for years. <em style="color:var(--sand);font-style:normal;font-size:.85rem;">Tap the ones you recognise.</em></p>
+      <p class="signal-intro r">Misalignment rarely appears suddenly. It often begins as small signals people ignore for years. <em class="signal-action">Tap the ones you recognise.</em></p>
 
       <ul class="sig-list" id="misalignList">
         <li class="r d1" onclick="toggleSig(this,'misalign')">
           <span class="sig-num">i</span>
-          constant fatigue even when life appears successful
+          <span class="sig-text">constant fatigue even when life appears successful</span>
           <span class="sig-check"><svg viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,4 3.5,6.5 9,1"/></svg></span>
         </li>
         <li class="r d2" onclick="toggleSig(this,'misalign')">
           <span class="sig-num">ii</span>
-          a quiet sense that something important is missing
+          <span class="sig-text">a quiet sense that something important is missing</span>
           <span class="sig-check"><svg viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,4 3.5,6.5 9,1"/></svg></span>
         </li>
         <li class="r d3" onclick="toggleSig(this,'misalign')">
           <span class="sig-num">iii</span>
-          difficulty feeling excited about the future
+          <span class="sig-text">difficulty feeling excited about the future</span>
           <span class="sig-check"><svg viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,4 3.5,6.5 9,1"/></svg></span>
         </li>
         <li class="r d4" onclick="toggleSig(this,'misalign')">
           <span class="sig-num">iv</span>
-          feeling busy but strangely unfulfilled
+          <span class="sig-text">feeling busy but strangely unfulfilled</span>
           <span class="sig-check"><svg viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,4 3.5,6.5 9,1"/></svg></span>
         </li>
         <li class="r d5" onclick="toggleSig(this,'misalign')">
           <span class="sig-num">v</span>
-          postponing important questions about direction
+          <span class="sig-text">postponing important questions about direction</span>
           <span class="sig-check"><svg viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,4 3.5,6.5 9,1"/></svg></span>
         </li>
       </ul>
@@ -1679,7 +1885,7 @@
        §7  REFLECTION  (dark)
   ════════════════════════ -->
   <section id="reflection">
-    <div class="bg-num" style="left:-1%;top:20px;font-size:min(24vw,260px);" aria-hidden="true">07</div>
+    <div class="bg-num dark" style="left:-2%;top:20px;font-size:min(21vw,240px);" aria-hidden="true">05</div>
     <div class="container">
 
       <span class="eyebrow light r">The Practice</span>
@@ -1720,6 +1926,7 @@
        §8  VIDEOS
   ════════════════════════ -->
   <section id="videos">
+    <div class="bg-num" style="left:-2%;top:24px;font-size:min(20vw,230px);" aria-hidden="true">06</div>
     <div class="container">
       <div class="video-heading">
         <div>
@@ -1756,6 +1963,7 @@
        §9  JOURNEY
   ════════════════════════ -->
   <section id="journey">
+    <div class="bg-num dark" style="left:-2%;top:24px;font-size:min(21vw,240px);" aria-hidden="true">07</div>
     <div class="container">
 
       <span class="eyebrow r">What Comes Next</span>
@@ -1822,8 +2030,12 @@
       </div>
 
     </div>
-  </section>
 
+    <footer class="site-footer">
+      <span>&copy; 2026 SoulSafari.in</span>
+      <span>A <a href="https://www.sstori.com" target="_blank" rel="noopener">Sstori.com</a> Design</span>
+    </footer>
+  </section>
 
   <script>
   /* ═══════════════════════════════════════════
@@ -1834,6 +2046,13 @@
     { threshold: 0.07, rootMargin: '0px 0px -30px 0px' }
   );
   document.querySelectorAll('.r').forEach((el) => io.observe(el));
+
+  const heroSeal = document.getElementById('heroSeal');
+  const releaseHeroSeal = () => {
+    if (heroSeal && window.scrollY > 6) heroSeal.classList.add('seal-exiting');
+  };
+  releaseHeroSeal();
+  window.addEventListener('scroll', releaseHeroSeal, { passive: true });
 
   /* Finale */
   const fio = new IntersectionObserver(

@@ -119,6 +119,8 @@
   }
   .site-links { display: flex; align-items: center; gap: 8px; }
   .site-links a {
+    position: relative;
+    display: inline-flex; align-items: center; gap: 6px;
     color: rgba(42,52,45,0.82); text-decoration: none;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em;
@@ -127,6 +129,47 @@
     transition: color .2s, background .2s;
   }
   .site-links a:hover { color: var(--ink); background: rgba(255,255,255,0.38); }
+  .site-links a::after {
+    content: '';
+    position: absolute; left: 13px; right: 13px; bottom: 5px;
+    height: 2px; border-radius: 999px;
+    background: var(--accent-dk);
+    opacity: 0; transform: scaleX(0.38);
+    transition: opacity .2s, transform .2s;
+  }
+  .site-links a:hover::after,
+  .site-links a[aria-current="page"]::after {
+    opacity: 1; transform: scaleX(1);
+  }
+  .site-links a[aria-current="page"] { color: var(--ink); }
+  .nav-icon {
+    width: 15px; height: 15px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: currentColor; opacity: .92;
+  }
+  .nav-icon svg {
+    width: 100%; height: 100%;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .nav-icon svg .solid { fill: currentColor; stroke: none; }
+  .nav-icon-video { width: 17px; height: 17px; }
+
+  .site-footer {
+    width: min(calc(100% - 32px), 1180px);
+    margin: 42px auto 32px;
+    padding-top: 18px;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+    border-top: 1px solid rgba(107,159,113,0.16);
+    color: rgba(42,52,45,0.58);
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
+  }
+  .site-footer a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(107,159,113,0.28);
+  }
+  .site-footer a:hover { color: var(--accent-dk); border-bottom-color: currentColor; }
 
   h1, h2, h3 {
     font-family: 'Playfair Display', Georgia, serif;
@@ -452,6 +495,7 @@
     .site-brand span { display: none; }
     .site-links { gap: 6px; }
     .site-links a { padding: 9px 10px; font-size: .72rem; letter-spacing: .06em; }
+    .site-footer { justify-content: center; text-align: center; margin-bottom: 24px; }
     .quiz-page { width: calc(100% - 20px); margin-top: 82px; }
     .quiz-hero {
       grid-template-columns: 1fr;
@@ -475,9 +519,9 @@
       <span>SoulSafari</span>
     </a>
     <nav class="site-links" aria-label="Primary navigation">
-      <a href="learn.html">Learn</a>
-      <a href="blog.html">Blog</a>
-      <a href="quiz.html">Quiz</a>
+      <a href="learn.html"><span class="nav-icon nav-icon-video" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="11.5" rx="2.2" /><path class="solid" d="M10.2 9.1v4.8l4.2-2.4z" /><path d="M9 20h6" /></svg></span><span>Learn</span></a>
+      <a href="blog.html"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5.2h5.2c1.1 0 2 .9 2 2v11.1c-.5-.7-1.2-1-2.1-1H5z" /><path d="M12.2 7.2c0-1.1.9-2 2-2H19v12.1h-4.9c-.8 0-1.4.3-1.9 1z" /></svg></span><span>Blog</span></a>
+      <a href="quiz.html" aria-current="page"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="16" rx="3" /><path d="M9 9h.01" /><path d="M11.5 9H16" /><path d="M9 13h.01" /><path d="M11.5 13H16" /><path d="M8.5 16.8l1.2 1.2 2.3-2.7" /><path d="M13.5 17H16" /></svg></span><span>Quiz</span></a>
     </nav>
   </header>
 
@@ -604,6 +648,11 @@
       </div>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <span>&copy; 2026 SoulSafari.in</span>
+    <span>A <a href="https://www.sstori.com" target="_blank" rel="noopener">Sstori.com</a> Design</span>
+  </footer>
 
   <script>
   const QUIZ = {
